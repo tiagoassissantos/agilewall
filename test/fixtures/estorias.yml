@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  importancia: 1
+  estimativa: 1.5
+  status: 1
+  data_conclusao: 2011-12-19
+  nome: MyString
+  descricao: MyText
+  como_testar: MyText
+
+two:
+  importancia: 1
+  estimativa: 1.5
+  status: 1
+  data_conclusao: 2011-12-19
+  nome: MyString
+  descricao: MyText
+  como_testar: MyText

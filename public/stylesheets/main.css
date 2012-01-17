@@ -1,0 +1,96 @@
+html, body { height: 100%; }
+
+body { margin: 0; background: #000; }
+
+#pagina {
+  position: relative;
+  min-height: 100%;
+  width: 970px;
+  margin: 0 auto;
+  background: #fff;
+  padding-top: 10px;  
+}
+
+#header { width: 950px; height: 50px; margin: 0 auto; border-bottom: 1px solid blue }
+#menuSuperior { height: 45px; }
+#titulo { width: 450px; }
+
+#main { padding-bottom: 120px; padding-top: 10px; width: 950px; margin: 0 auto; }
+#menuLateral { width: 200px; }
+#busca { background: #F1F1F1; width: 185px; padding: 0px 0px 5px 5px;  }
+#conteudo { width: 950px; }
+#destaques { background: #F1F1F1; height: 250px; }
+
+#clear {clear: both;}
+
+#rodape {
+  position: absolute;
+  bottom: 0;
+  width: 950px;
+  margin-top: -110px;
+  height: 100px;  
+  left: 50%;
+  margin-left: -475px;
+  margin-bottom: 10px;
+}
+
+h3, h4 { margin-bottom: 7px; margin-top: 7px; }
+
+.direita { float: right; }
+.esquerda { float: left; }
+.fonte16 { font-size: 16px; }
+.fonte25 { font-size: 25px; }
+.combobox { width: 180px; }
+.caixa { padding: 8px;  }
+.caixaImovel { background: #F1F1F1; height: 172px; margin-bottom: 10px; }
+.caixaImovel label { font-weight: bold; }
+.hoverImovel:hover { background: #8c8c8c; }
+.largFoto { width: 260px; }
+.largInfoImovel { width: 220px; }
+.largDescricaoImovel { width: 190px; }
+.apple_pagination { margin-top: 10px; margin-bottom: 10px; }
+
+.numeros input { width: 80px; }
+.textos textarea { width: 750px; height: 100px; }
+.margemDireita { margin-right: 10px; }
+.textos { width: 370px; }
+
+.botao a { color: #fff; text-decoration: none; }
+.botao a:hover { background: #28597a; color: #fff; }
+.botao {
+  border-top: 1px solid #96d1f8;
+  background: #65a9d7;
+  background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#65a9d7));
+  background: -moz-linear-gradient(top, #3e779d, #65a9d7);
+  padding: 6px 8px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+  -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+  box-shadow: rgba(0,0,0,1) 0 1px 0;
+  text-shadow: rgba(0,0,0,.4) 0 1px 0;
+  color: white;
+  font-size: 15px;
+  font-family: Georgia, serif;
+  text-decoration: none;
+  vertical-align: middle;
+}
+.botao:hover {
+  border-top-color: #28597a;
+  background: #28597a;
+  color: #ccc;
+}
+.botao:active {
+  border-top-color: #1b435e;
+  background: #1b435e;
+}
+
+
+.bordaArredondada {
+    -moz-border-radius:10px; /* Firefox, etc */
+    -khtml-border-radius:10px; /* Konqueror, etc */
+    -webkit-border-radius:10px; /* Safari, Google Chrome, etc */
+    border-radius:10px;
+    behavior:url(stylesheets/border-radius.htc); /* IE */
+}

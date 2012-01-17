@@ -1,0 +1,6 @@
+<% if user_signed_in? %>
+	<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+	<%= link_to('Projetos', projetos_path) %>
+<% else %>
+ 	<%= render :file => 'devise/sessions/new.erb' %>  
+<% end %>

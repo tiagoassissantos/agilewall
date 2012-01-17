@@ -1,0 +1,11 @@
+<h1><%= @projeto.nome %></h1>
+
+<h3><%= link_to 'Backlog', backlog_path(:projeto => params[:projeto]) %></h3>
+<h3><%= link_to 'Quadro', quadro_path(:projeto => params[:projeto]) %></h3>
+
+<div>
+	<h2>Usuários do projeto</h2>
+	<% @projeto.users.each do |user| %>
+		<%= user.email %><br />
+	<% end %>
+</div>

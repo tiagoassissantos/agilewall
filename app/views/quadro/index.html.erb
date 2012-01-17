@@ -1,0 +1,116 @@
+<%= stylesheet_link_tag 'redmond/jquery-ui-1.8.2.custom' %>
+
+<style>
+a:link {color: #000; text-decoration: none; font-size: 90%;}
+a:visited {color: #000; text-decoration: none; font-size: 90%;}
+a:hover {color: #555; text-decoration: none; font-size: 90%;}
+a:active {color: #000; text-decoration: none; font-size: 90%;}
+a img {border-width:0;}
+
+#pagina { width: 1200px; }
+#main { width: 1200px;}
+#conteudo { width: 1200px; }
+</style>
+
+<h3>Quadro</h3>
+<h4><h3><%= link_to 'Backlog', backlog_path(:projeto => params[:projeto]) %></h3></h4>
+
+<div style="float: left; border: 1px solid blue; width: 180px; margin-left: 10px; height: 600px;">
+<div style="height: 50px; border-bottom: 1px solid blue;">
+	<div style="width: 100%; text-align: center">
+		Não Iniciado
+		<input id="limite_nao_iniciado" type="text" style="width: 20px; text-align: center;" />
+	</div>
+</div>
+
+<div id="nao_iniciado" style="height: 50px;"></div>
+</div>
+
+<div id="desenvolvimento" style="float: left; border: 1px solid blue; width: 360px; margin-left: 10px; height: 600px;">
+<div style="height: 50px; border-bottom: 1px solid blue;">
+	<div style="width: 100%; border-bottom: 1px solid blue; text-align: center">
+		Desenvolvimento
+		<input id="limite_desenvolvimento" type="text" style="width: 20px; text-align: center;" />
+	</div>
+
+	<div style="float: left; width: 49%; margin-top: 5px; text-align: center;">
+		<label>Em Andamento</label>
+	</div>
+
+	<div style="float: left; width: 49%; margin-top: 5px; text-align: center; border-left: 1px solid blue;">
+		<label>Pronto</label>
+	</div>
+</div>
+
+<div style="height: 350px;">
+	<div id="em_desenvolvimento" style="float: left; width: 49%; text-align: left; height: 350px;"></div>
+
+	<div id="pronto_desenvolvimento" style="float: left; width: 49%; text-align: left; border-left: 1px solid blue; height: 350px;"></div>
+</div>
+
+<div style="width: 100%; margin-top: 5px; text-align: center; border-top: 1px solid blue; border-bottom: 1px solid blue;">
+	<label>Com Impedimento</label>
+</div>
+
+<div id="com_impedimento" style="text-align: left; height: 335px;"></div>
+
+</div>
+
+<div id="teste" style="float: left; border: 1px solid blue; width: 360px; margin-left: 10px; height: 600px;">
+<div style="height: 50px; border-bottom: 1px solid blue;">
+	<div style="width: 100%; border-bottom: 1px solid blue; text-align: center">
+		Teste
+		<input id="limite_teste" type="text" style="width: 20px; text-align: center;" />
+	</div>
+	
+	<div style="float: left; width: 49%; margin-top: 5px; text-align: center">
+		<label>Em Teste</label>
+	</div>
+
+	<div style="float: left; width: 49%; margin-top: 5px; text-align: center; border-left: 1px solid blue;">
+		<label>Testado</label>
+	</div>
+</div>
+
+<div id="em_teste" style="float: left; width: 49%; text-align: left; height: 545px;"></div>
+
+<div id="teste_pronto" style="float: left; width: 49%; text-align: left; border-left: 1px solid blue; height: 545px;"></div>
+</div>
+
+<div id="deploy_producao" style="float: left; border: 1px solid blue; width: 180px; margin-left: 10px; height: 600px;">
+<div style="height: 50px; border-bottom: 1px solid blue;">
+	<div style="width: 100%; text-align: center; border-bottom: 1px solid blue;">
+		Deploy Em Produção
+		<input id="limite_deploy_producao" type="text" style="width: 20px; text-align: center;" />
+	</div>
+
+	<div style="float: left; width: 49%; text-align: center;">
+		<label>Deploy</label>
+	</div>
+</div>
+
+<div id="deploy_em_producao" style="float: left; width: 49%; text-align: left; height: 545px;"></div>
+</div>
+
+
+<div id="editar_estoria" title="Editando um Estória">
+<form id="form_estoria">
+<%= render 'estorias/form' %>
+</form>
+</div>
+
+<%= javascript_include_tag 'jqueryui/jquery.ui.core.min.js' %>
+<%= javascript_include_tag 'jqueryui/jquery.ui.widget.min.js' %>
+<%= javascript_include_tag 'jqueryui/jquery.ui.position.min.js' %>
+<%= javascript_include_tag 'jqueryui/jquery.ui.dialog.min.js' %>
+<%= javascript_include_tag 'jqueryui/jquery.ui.button.min.js' %>
+<%= javascript_include_tag 'jqueryui/jquery.ui.autocomplete.min.js' %>
+<%= javascript_include_tag 'jquery.form.js' %>
+<%= javascript_include_tag 'jquery.validate.js' %>
+<%= javascript_include_tag 'core.js' %>
+<%= javascript_include_tag 'quadro.js' %>
+
+<script>
+var id_projeto = 0;
+id_projeto = <%= @projeto.id %>;
+</script>

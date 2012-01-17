@@ -1,0 +1,49 @@
+
+	<input type="hidden" name="id" id="id_estoria" />
+  <div class="field" style="float: left; width: 100px;">
+    <label>Importância</label><br />
+    <input type="text" name="estoria[importancia]" id="importancia" style="width: 40px" />
+  </div>
+  <div class="field" style="float: left; width: 100px;">
+    <label>Estimativa</label><br />
+    <input type="text" name="estoria[estimativa]" id="estimativa" style="width: 40px" />
+  </div>
+  <div class="field" style="float: left; width: 250px">
+    <label>Status</label><br />
+    <select name="estoria[status]" id="status">
+		<option value="1">Em Aprovacao</option>
+		<option value="2">Aprovado</option>
+		<option value="3">Aguardando Desenvolvimento</option>
+		<option value="4">Em Desenvolvimento</option>
+		<option value="5">Desenvolvimento Concluído</option>
+		<option value="6">Impedimento</option>
+		<option value="7">Em Teste</option>
+		<option value="8">Testado</option>
+		<option value="9">Em Deploy</option>
+		<option value="10">Em Produção</option>
+	</select>
+  </div>
+  <div class="field" style="float: left; width: 100px">
+    <label>Tipo</label><br />
+    <select name="estoria[tipo]" id="tipo">
+		<option value="1">Funcionalidade</option>
+		<option value="2">Bug</option>
+		<option value="3">Tarefa Técnica</option>
+	</select>
+  </div>
+  <div class="field" style="width: 500px;">
+    <label>Nome</label><br />
+    <input type="text" name="estoria[nome]" id="nome" style="width: 575px;" />
+  </div>
+  <div class="field">
+    <label>Descrição</label><br />
+    <textarea name="estoria[descricao]" id="descricao" style="width: 575px; height: 80px;"></textarea>
+  </div>
+  <div class="field">
+    <label>Como Testar</label><br />
+    <textarea name="estoria[como_testar]" id="como_testar" style="width: 575px; height: 80px;"></textarea>
+  </div>
+  <div class="actions">
+    <button type="submit">Salvar</button>
+	<button type="button" onclick="$('#editar_estoria').dialog('close');">Cancelar</button>
+  </div>

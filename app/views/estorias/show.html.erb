@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Importancia:</b>
+  <%= @estoria.importancia %>
+</p>
+
+<p>
+  <b>Estimativa:</b>
+  <%= @estoria.estimativa %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @estoria.status %>
+</p>
+
+<p>
+  <b>Data conclusao:</b>
+  <%= @estoria.data_conclusao %>
+</p>
+
+<p>
+  <b>Nome:</b>
+  <%= @estoria.nome %>
+</p>
+
+<p>
+  <b>Descricao:</b>
+  <%= @estoria.descricao %>
+</p>
+
+<p>
+  <b>Como testar:</b>
+  <%= @estoria.como_testar %>
+</p>
+
+
+<%= link_to 'Edit', edit_estoria_path(@estoria) %> |
+<%= link_to 'Back', estorias_path %>
