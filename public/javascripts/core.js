@@ -43,6 +43,8 @@ $(document).ready( function () {
 function busca_estoria(id_estoria) {
 	$.getJSON('/estorias/' + id_estoria + '/busca',
 		function(resposta) {
+			$("#excluir_estoria").remove();
+			
 			var estoria = resposta[0].estoria
 			$('#id_estoria').val(estoria.id);
 			$('#importancia').val(estoria.importancia);
@@ -53,10 +55,21 @@ function busca_estoria(id_estoria) {
 			$('#descricao').val(estoria.descricao);
 			$('#como_testar').val(estoria.como_testar);
 			
+			$('#botoes').append("<button id='excluir_estoria' type='button' onclick='exclui_estoria(" + estoria.id + ");'>Excluir</button>");
+			
 			$('#editar_estoria').dialog('open');
 		});
 }
 
 function nova_estoria() {
 	$('#dialogo_nova_estoria').dialog('open');
+}
+
+function exclui_estoria(id_estoria) {
+	$("#form_estoria").ajaxSubmit({
+		success: retornoAtualiza,
+		url: "/estorias/" + id_estoria ,
+		type: 'DELETE' 
+	});
+	$('#editar_estoria').dialog('close');
 }

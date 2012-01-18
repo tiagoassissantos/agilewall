@@ -1,0 +1,21 @@
+<div id='menuSuperior' class='direita'>
+	<% if user_signed_in? %>
+		<%= link_to('Projetos', projetos_path) %> |
+		<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+	<% else %>
+ 		
+	<% end %>
+</div>
+    
+<div id='titulo'>
+  <h1><%= @projeto.nome %></h1>
+</div>
+
+<div id='menu_principal'>
+  <ul class="nav_h">
+      <li><%= link_to 'Dashboard', dashboard_path(:projeto => params[:projeto]) %></li>
+      <li><%= link_to 'Backlog', backlog_path(:projeto => params[:projeto]) %></li>
+      <li><%= link_to 'Quadro', quadro_path(:projeto => params[:projeto]) %></li>
+    </ul>
+</div>
+

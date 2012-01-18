@@ -41,9 +41,7 @@ function exibe_estorias_no_quadro(estoria, quadro) {
 	$(quadro).append(
 		"<a href='javascript:void(0);' onclick='busca_estoria(" + estoria.id + ");'>" +
 		"<div style='margin: 4px; background-color: #FFFF00; padding: 7px; width: 450px'>" +
-			"<div>" +
-				"<span style='width: 50px; display: block; float: left;'>" + estoria.importancia + "</span><span>" + estoria.estimativa + "</span>" +
-			"</div>" +
+			"<span style='width: 50px; display: block; float: left;'>" + estoria.importancia + "</span>" +
 			"<span>" + estoria.nome + "</span><br />" +
 		"</div>" +
 		"</a>"

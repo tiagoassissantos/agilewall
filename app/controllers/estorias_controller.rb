@@ -1,5 +1,6 @@
 # encoding: UTF-8
 class EstoriasController < ApplicationController
+  layout 'layout_projetos'
   before_filter :authenticate_user!
   
   # GET /estorias
@@ -76,10 +77,7 @@ class EstoriasController < ApplicationController
     @estoria = Estoria.find(params[:id])
     @estoria.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(estorias_url) }
-      format.xml  { head :ok }
-    end
+    render :json => @estoria
   end
   
   def atualizar
