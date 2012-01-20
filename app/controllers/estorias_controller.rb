@@ -102,7 +102,7 @@ class EstoriasController < ApplicationController
   end
   
   def lista
-    @estorias = Estoria.where(:status => [3, 4, 5, 6, 7, 8, 9, 10], :projeto_id => params[:projeto]).order('importancia DESC')
+    @estorias = Estoria.where(:status => [3, 4, 5, 6, 7, 8], :projeto_id => params[:projeto]).order('importancia DESC')
     
     render :json => @estorias
   end

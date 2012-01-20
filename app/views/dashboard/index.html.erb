@@ -1,5 +1,6 @@
 <div>
 	<h2>Usuários do projeto</h2>
+	<%= link_to 'Gerenciar Usuários', usuarios_path(:projeto => @projeto.id) %><br />
 	<% @projeto.users.each do |user| %>
 		<%= user.email %><br />
 	<% end %>

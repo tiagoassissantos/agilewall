@@ -14,6 +14,7 @@ function retornoAtualiza(resposta) {
 
 function retorno_nova_historia() {
 	$('#dialogo_nova_estoria').dialog('close');
+	limpa_dialogo_estoria();
 	busca_estorias();
 }
 

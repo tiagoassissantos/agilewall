@@ -29,11 +29,11 @@ function exibe_estorias(estorias) {
 			quadro = "#em_teste";
 		} else if (estoria.status == 8) {
 			quadro = "#teste_pronto";
-		} else if (estoria.status == 9) {
+		} /*else if (estoria.status == 9) {
 			quadro = "#deploy_em_producao";
 		} else if (estoria.status == 10) {
 			quadro = "#em_producao";
-		}
+		} */
 		
 		exibe_estorias_no_quadro(estoria, quadro);
 	}
@@ -43,7 +43,7 @@ function exibe_estorias_no_quadro(estoria, quadro) {
 	$(quadro).append(
 		"<div style=' float: left;'>" +
 		"<a href='javascript:void(0);' onclick='busca_estoria(" + estoria.id + ");'>" +
-		"<div style='margin: 4px; background-color: #FFFF00; padding: 7px; width: 150px'>" +
+		"<div style='margin: 4px; background-color: #FFFF00; padding: 7px; width: 210px'>" +
 			"<span style='width: 50px; display: block; float: left;'>" + estoria.importancia + "</span>" +
 			"<span>" + estoria.nome + "</span><br />" +
 		"</div>" +
@@ -59,6 +59,6 @@ function limpa_quadros() {
 	$("#com_impedimento").empty();
 	$("#em_teste").empty();
 	$("#teste_pronto").empty();
-	$("#deploy_em_producao").empty();
-	$("#em_producao").empty();
+	//$("#deploy_em_producao").empty();
+	//$("#em_producao").empty();
 }

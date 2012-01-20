@@ -1,3 +1,5 @@
+var id_estoria = 0;
+
 $(document).ready( function () {
 	$('#editar_estoria').dialog({
 		autoOpen: false,
@@ -17,7 +19,7 @@ $(document).ready( function () {
 		position: 'center',
 		modal: true,
 		close: function() {
-			
+			limpa_dialogo_estoria();
 		}
 	});
 	
@@ -37,6 +39,29 @@ $(document).ready( function () {
 			type: 'post' 
 		});
 		return false;
+	});
+	
+	$("#confirma_exclusao_estoria").dialog({
+		autoOpen: false,
+		resizable: false,
+		height:140,
+		modal: true,
+		buttons: {
+			"Sim": function() {
+				$( this ).dialog( "close" );
+				$("#form_estoria").ajaxSubmit({
+					success: retornoAtualiza,
+					url: "/estorias/" + id_estoria,
+					type: 'DELETE' 
+				});
+				$('#editar_estoria').dialog('close');
+				id_estoria = 0;
+			},
+			"Não": function() {
+				$( this ).dialog( "close" );
+				id_estoria = 0;
+			}
+		}
 	});
 });
 
@@ -65,11 +90,25 @@ function nova_estoria() {
 	$('#dialogo_nova_estoria').dialog('open');
 }
 
-function exclui_estoria(id_estoria) {
-	$("#form_estoria").ajaxSubmit({
-		success: retornoAtualiza,
-		url: "/estorias/" + id_estoria ,
-		type: 'DELETE' 
-	});
+function exclui_estoria(estoria_id) {
+	id_estoria = estoria_id;
+	$("#confirma_exclusao_estoria").dialog("open");
+}
+
+function fecha_dialogo_editar() {
 	$('#editar_estoria').dialog('close');
+}
+
+function fecha_dialogo_nova_estoria() {
+	$('#dialogo_nova_estoria').dialog('close');
+	limpa_dialogo_estoria();
+}
+
+function limpa_dialogo_estoria() {
+	$("#id_nova_estoria").val("");
+	$("#importancia_nova_estoria").val("");
+	$("#estimativa_nova_estoria").val("");
+	$("#nome_nova_estoria").val("");
+	$("#descricao_nova_estoria").val("");
+	$("#como_testar_nova_estoria").val("");
 }

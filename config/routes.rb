@@ -1,4 +1,8 @@
 AgileWall::Application.routes.draw do
+  get "usuarios/inclui_user"
+  get "usuarios/pesquisa"
+  get "usuarios", :controller => :usuarios, :action => :index
+
   resources :projetos
 
   get "home/index"

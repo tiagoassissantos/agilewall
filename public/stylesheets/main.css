@@ -15,7 +15,7 @@ body { margin: 0; background: #000; }
 #menuSuperior { height: 45px; }
 #titulo { width: 450px; }
 
-#main { padding-bottom: 120px; padding-top: 10px; width: 950px; margin: 0 auto; }
+#main { padding-bottom: 120px; padding-top: 25px; width: 950px; margin: 0 auto; }
 #menuLateral { width: 200px; }
 #busca { background: #F1F1F1; width: 185px; padding: 0px 0px 5px 5px;  }
 #conteudo { width: 950px; }
