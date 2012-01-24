@@ -35,7 +35,12 @@ function exibe_estorias(estorias) {
 			quadro = "#em_producao";
 		} */
 		
-		exibe_estorias_no_quadro(estoria, quadro);
+		if (estoria.status == 6) {
+			exibe_estorias_em_impedimento_no_quadro(estoria, quadro);
+		
+		} else {
+			exibe_estorias_no_quadro(estoria, quadro);
+		}
 	}
 }
 
@@ -43,7 +48,7 @@ function exibe_estorias_no_quadro(estoria, quadro) {
 	$(quadro).append(
 		"<div style=' float: left;'>" +
 		"<a href='javascript:void(0);' onclick='busca_estoria(" + estoria.id + ");'>" +
-		"<div style='margin: 4px; background-color: #FFFF00; padding: 7px; width: 210px'>" +
+		"<div style='margin: 4px; background-color: #FFFF00; padding: 7px; width: 95%'>" +
 			"<span style='width: 50px; display: block; float: left;'>" + estoria.importancia + "</span>" +
 			"<span>" + estoria.nome + "</span><br />" +
 		"</div>" +
@@ -51,6 +56,20 @@ function exibe_estorias_no_quadro(estoria, quadro) {
 		"</div>"
 	);
 }
+
+function exibe_estorias_em_impedimento_no_quadro(estoria, quadro) {
+	$(quadro).append(
+		"<div style=' float: left;'>" +
+		"<a href='javascript:void(0);' onclick='busca_estoria(" + estoria.id + ");'>" +
+		"<div style='margin: 4px; background-color: #FFFF00; padding: 7px; width: 49%'>" +
+			"<span style='width: 50px; display: block; float: left;'>" + estoria.importancia + "</span>" +
+			"<span>" + estoria.nome + "</span><br />" +
+		"</div>" +
+		"</a>" +
+		"</div>"
+	);
+}
+
 
 function limpa_quadros() {
 	$("#nao_iniciado").empty();

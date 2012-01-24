@@ -51,7 +51,15 @@ class EstoriasController < ApplicationController
     @estoria.projeto = Projeto.find(params[:projeto_id])
     
     if @estoria.save
+      @evento = Evento.find(1)
+      historico = Historico.new
+      historico.evento = @evento
+      historico.estoria = @estoria
+      historico.data = Date.today
+      historico.save
+      
       render :json => @estoria
+      
     else
       render :json => @estoria.errors
     end
@@ -82,8 +90,39 @@ class EstoriasController < ApplicationController
   
   def atualizar
     @estoria = Estoria.find(params[:id])
-
+    
     if @estoria.update_attributes(params[:estoria])
+      
+      if @estoria.status == 2
+        @evento = Evento.find(2)
+        
+      elsif @estoria.status == 4
+        @evento = Evento.find(4)
+        
+      elsif @estoria.status == 5
+        @evento = Evento.find(5)
+      
+      elsif @estoria.status == 6
+        @evento = Evento.find(6)
+        
+      elsif @estoria.status == 7
+        @evento = Evento.find(8)
+        
+      elsif @estoria.status == 8
+        @evento = Evento.find(9)
+        
+      elsif @estoria.status == 10
+        @evento = Evento.find(10)
+        @estoria.data_conclusao = Date.today
+        @estoria.save
+      end
+      
+      historico = Historico.new
+      historico.evento = @evento
+      historico.estoria = @estoria
+      historico.data = Date.today
+      historico.save
+      
       render :json => @estoria
     else
       render :json => @estoria.errors

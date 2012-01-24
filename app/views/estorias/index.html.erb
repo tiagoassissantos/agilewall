@@ -8,18 +8,16 @@ a:active {color: #000; text-decoration: none; font-size: 90%;}
 a img {border-width:0;}
 </style>
 
-<div id="pagina" style="width: 1000px; margin: 0 auto">
+<a href='javascript:void(0);' onclick='nova_estoria();' style="background: #fff">Nova Estória</a><br />
 
-	<a href='javascript:void(0);' onclick='nova_estoria();' style="background: #fff">Nova Estória</a><br />
-
-	<div id="estorias_nao_aprovadads" style="border: 1px solid blue; width: 480px; height:400px; float: left">
-		<h4>Estórias Aguardando Aprovação</h4>
-	</div>
-	
-	<div id="estorias_aprovadas" style="border: 1px solid blue; width: 480px; height:400px; float: right">
-		<h4>Estórias Aprovadas</h4>
-	</div>
+<div id="estorias_nao_aprovadads" style="border: 1px solid blue; width: 470px; height: 500px; float: left; overflow:auto;">
+	<h4>Estórias Aguardando Aprovação</h4>
 </div>
+
+<div id="estorias_aprovadas" style="border: 1px solid blue; width: 470px; height: 500px; float: right; overflow:auto;">
+	<h4>Estórias Aprovadas</h4>
+</div>
+
 
 <div id="editar_estoria" title="Editar Estória">
 <form id="form_estoria">

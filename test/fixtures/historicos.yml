@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  evento: 
+  estoria: 
+  descricao: MyString
+  data: 2012-01-23
+
+two:
+  evento: 
+  estoria: 
+  descricao: MyString
+  data: 2012-01-23
