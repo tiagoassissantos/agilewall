@@ -12,6 +12,7 @@ AgileWall::Application.routes.draw do
   
   get 'quadro', :controller => :quadro, :action => :index
   
+  get '/estorias/download_anexo'
   get '/estorias/lista_backlog'
   get '/estorias/lista'
   post '/estorias/atualizar'

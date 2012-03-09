@@ -91,13 +91,13 @@ a img {border-width:0;}
 
 
 <div id="editar_estoria" title="Editando um Estória">
-<form id="form_estoria">
+<%= form_tag "/estorias/atualizar", :id => "form_estoria", :multipart => true do %>
 	<%= render 'estorias/form' %>
 	<div id='botoes' class="actions">
     	<button type="submit">Salvar</button>
 		<button id='cancelar_estoria' type='button' onclick='fecha_dialogo_editar();'>Cancelar</button>
   	</div>
-</form>
+<% end %>
 </div>
 
 <%= render 'estorias/dialogo_confirma_excluir' %>

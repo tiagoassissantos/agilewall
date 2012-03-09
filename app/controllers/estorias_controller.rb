@@ -51,11 +51,17 @@ class EstoriasController < ApplicationController
     @estoria.projeto = Projeto.find(params[:projeto_id])
     
     if @estoria.save
+      anexo = Anexo.new
+      anexo.arquivo = params[:anexo]
+      anexo.estoria = @estoria
+      anexo.save!
+      
       @evento = Evento.find(1)
       historico = Historico.new
       historico.evento = @evento
       historico.estoria = @estoria
       historico.data = Date.today
+      historico.user = current_user
       historico.save
       
       render :json => @estoria
@@ -117,10 +123,16 @@ class EstoriasController < ApplicationController
         @estoria.save
       end
       
+      anexo = Anexo.new
+      anexo.arquivo = params[:anexo]
+      anexo.estoria = @estoria
+      anexo.save!
+      
       historico = Historico.new
       historico.evento = @evento
       historico.estoria = @estoria
       historico.data = Date.today
+      historico.user = current_user
       historico.save
       
       render :json => @estoria
@@ -131,7 +143,7 @@ class EstoriasController < ApplicationController
   
   def busca
     @estoria = Estoria.find_all_by_id(params[:id])
-    render :json => @estoria
+    render :json => @estoria.to_json(:include => :anexos)
   end
   
   def lista_backlog
@@ -144,5 +156,10 @@ class EstoriasController < ApplicationController
     @estorias = Estoria.where(:status => [3, 4, 5, 6, 7, 8], :projeto_id => params[:projeto]).order('importancia DESC')
     
     render :json => @estorias
+  end
+  
+  def download_anexo
+    anexo = Anexo.find(params[:id_anexo].to_i)
+    send_file anexo.arquivo.url
   end
 end

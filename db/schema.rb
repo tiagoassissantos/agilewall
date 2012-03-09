@@ -10,7 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120123232215) do
+ActiveRecord::Schema.define(:version => 20120309000257) do
+
+  create_table "anexos", :force => true do |t|
+    t.string   "arquivo"
+    t.integer  "estoria_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "estorias", :force => true do |t|
     t.integer  "importancia"
@@ -40,6 +47,7 @@ ActiveRecord::Schema.define(:version => 20120123232215) do
     t.date     "data"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "papeis", :force => true do |t|

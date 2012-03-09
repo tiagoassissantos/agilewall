@@ -1,4 +1,5 @@
 $(document).ready( function () {
+	bloqueia_tela();
 	busca_estorias();
 });
 
@@ -42,13 +43,15 @@ function exibe_estorias(estorias) {
 			exibe_estorias_no_quadro(estoria, quadro);
 		}
 	}
+	
+	desbloqueia_tela();
 }
 
 function exibe_estorias_no_quadro(estoria, quadro) {
 	$(quadro).append(
 		"<div style=' float: left;'>" +
 		"<a href='javascript:void(0);' onclick='busca_estoria(" + estoria.id + ");'>" +
-		"<div style='margin: 4px; background-color: #FFFF00; padding: 7px; width: 95%'>" +
+		"<div style='margin: 4px; background-color: #FFFF00; padding: 7px; width: 90%'>" +
 			"<span style='width: 50px; display: block; float: left;'>" + estoria.importancia + "</span>" +
 			"<span>" + estoria.nome + "</span><br />" +
 		"</div>" +

@@ -1,4 +1,5 @@
 $(document).ready( function () {
+	bloqueia_tela();
 	busca_estorias();
 });
 
@@ -36,6 +37,8 @@ function exibe_estorias(estorias) {
 		
 		exibe_estorias_no_quadro(estoria, quadro);
 	}
+	
+	desbloqueia_tela();
 }
 
 function exibe_estorias_no_quadro(estoria, quadro) {
