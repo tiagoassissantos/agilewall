@@ -1,4 +1,5 @@
 var id_estoria = 0;
+var id_anexo = 0;
 
 $(document).ready( function () {
 	$('#editar_estoria').dialog({
@@ -56,7 +57,7 @@ $(document).ready( function () {
 	$("#confirma_exclusao_estoria").dialog({
 		autoOpen: false,
 		resizable: false,
-		height:140,
+		height:150,
 		modal: true,
 		buttons: {
 			"Sim": function() {
@@ -73,6 +74,33 @@ $(document).ready( function () {
 			"Não": function() {
 				$( this ).dialog( "close" );
 				id_estoria = 0;
+			}
+		}
+	});
+	
+	
+	$("#confirma_exclusao_anexo").dialog({
+		autoOpen: false,
+		resizable: false,
+		height:150,
+		modal: true,
+		buttons: {
+			"Sim": function() {
+				bloqueia_tela();
+				$( this ).dialog( "close" );
+
+				$.getJSON('/estorias/excluir_anexo',
+					{id_anexo: id_anexo},
+					function(resposta) {
+						$('#editar_estoria').dialog('close');
+						id_anexo = 0;
+						desbloqueia_tela();
+					}
+				);
+			},
+			"Não": function() {
+				$( this ).dialog( "close" );
+				id_anexo = 0;
 			}
 		}
 	});
@@ -96,7 +124,11 @@ function busca_estoria(id_estoria) {
 			} else {
 				$('#anexos12').append(
 					"<a href='/estorias/download_anexo?id_anexo=" + estoria.anexos[0].id + "'>" +
-					 "Download Anexo</a><br /><br />"
+					 "Download Anexo</a>"
+				);
+				$('#anexos12').append(
+					"<a href='javascript:void(0);' onclick='exclui_anexo(" + estoria.anexos[0].id + ");' style='margin-left: 15px; font-size: 10px;'>" +
+					 "Excluir</a><br /><br />"
 				);
 			}
 			
@@ -145,13 +177,9 @@ function limpa_dialogo_estoria() {
 	$("#como_testar_nova_estoria").val("");
 }
 
-function download_anexo(id_anexo) {
-	$.getJSON('/estorias/download_anexo',
-		{id_anexo: id_anexo},
-		function(resposta) {
-			
-		}
-	);
+function exclui_anexo(anexo) {
+	id_anexo = anexo;
+	$("#confirma_exclusao_anexo").dialog("open");
 }
 
 function bloqueia_tela() {

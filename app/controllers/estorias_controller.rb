@@ -148,18 +148,25 @@ class EstoriasController < ApplicationController
   
   def lista_backlog
     @estorias = Estoria.where(:status => [1, 2], :projeto_id => params[:projeto]).order('importancia DESC')
-    
     render :json => @estorias
   end
   
   def lista
     @estorias = Estoria.where(:status => [3, 4, 5, 6, 7, 8], :projeto_id => params[:projeto]).order('importancia DESC')
-    
     render :json => @estorias
   end
   
   def download_anexo
     anexo = Anexo.find(params[:id_anexo].to_i)
     send_file anexo.arquivo.url
+  end
+  
+  def excluir_anexo
+    anexo = Anexo.find(params[:id_anexo].to_i)
+    anexo.destroy
+    
+    resposta = Hash.new
+    resposta[:resp] = "OK"
+    render :json => resposta
   end
 end

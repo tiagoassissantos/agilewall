@@ -20,7 +20,6 @@ a img {border-width:0;}
 
 
 <div id="editar_estoria" title="Editar Estória">
-	<!-- <form id="form_estoria"> -->
 	<%= form_tag "/estorias/atualizar", :id => "form_estoria", :multipart => true do %>
 		<%= render 'estorias/form' %>
 		
@@ -28,21 +27,10 @@ a img {border-width:0;}
     		<button type="submit">Salvar</button>
 			<button id='cancelar_estoria' type='button' onclick='fecha_dialogo_editar();'>Cancelar</button>
   		</div>
-		
-		<!--
-		<%= form_tag "/estorias/anexar", :id => "form_anexo", :multipart => true do %>
-			<input type="hidden" name="id_estoria" id="id_estoria_anexo" />
-    		<label>Anexo</label><br />
-    		<input type="file" name="anexo" id="anexo" style=" height: 25px;" />
-			<button type="submit">Enviar</button>
-		<% end %>
-		-->
 	<% end %>
-	<!-- </form> -->
 </div>
 
 <div id="dialogo_nova_estoria" title="Nova Estória">
-<!-- <form id="form_nova_estoria"> -->
 <%= form_tag "/estorias", :id => "form_nova_estoria", :multipart => true do %>
 	<input type="hidden" name="projeto_id" id="projeto_id" value="<%= @projeto.id %>" />
 	
@@ -103,10 +91,10 @@ a img {border-width:0;}
 		<button id='cancelar_nova_estoria' type='button' onclick='fecha_dialogo_nova_estoria();'>Cancelar</button>
   	</div>
 <% end %>
-<!-- </form> -->
 </div>
 
 <%= render 'estorias/dialogo_confirma_excluir' %>
+<%= render 'estorias/dialogo_confirma_excluir_anexo' %>
 
 <%= javascript_include_tag 'jqueryui/jquery.ui.core.min.js' %>
 <%= javascript_include_tag 'jqueryui/jquery.ui.widget.min.js' %>
