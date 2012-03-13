@@ -24,6 +24,7 @@ AgileWall::Application.routes.draw do
   
   resources :estorias do
     member do
+      post :destroy
       get :altera_status
       get :busca
     end

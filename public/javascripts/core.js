@@ -66,7 +66,7 @@ $(document).ready( function () {
 				$("#form_estoria").ajaxSubmit({
 					success: retornoAtualiza,
 					url: "/estorias/" + id_estoria,
-					type: 'DELETE' 
+					type: 'POST' 
 				});
 				$('#editar_estoria').dialog('close');
 				id_estoria = 0;
