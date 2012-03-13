@@ -109,44 +109,47 @@ $(document).ready( function () {
 function busca_estoria(id_estoria) {
 	bloqueia_tela();
 	$.getJSON('/estorias/' + id_estoria + '/busca',
-		function(resposta) {
-			$("#excluir_estoria").remove();
-			$("#anexos12").empty();
-			
-			var estoria = resposta[0].estoria
-			
-			if (estoria.anexos.length == 0) {
-				$('#anexos12').append(
-					'<input type="hidden" name="id_estoria" id="id_estoria_anexo" />' +
-    				'<label>Anexo: </label>' +
-    				'<input type="file" name="anexo" id="anexo" style=" height: 25px;" /><br /><br />'
-				);
-			} else {
-				$('#anexos12').append(
-					"<a href='/estorias/download_anexo?id_anexo=" + estoria.anexos[0].id + "'>" +
-					 "Download Anexo</a>"
-				);
-				$('#anexos12').append(
-					"<a href='javascript:void(0);' onclick='exclui_anexo(" + estoria.anexos[0].id + ");' style='margin-left: 15px; font-size: 10px;'>" +
-					 "Excluir</a><br /><br />"
-				);
-			}
-			
-			$('#id_estoria').val(estoria.id);
-			$('#id_estoria_anexo').val(estoria.id);
-			$('#importancia').val(estoria.importancia);
-			$('#estimativa').val(estoria.estimativa);
-			$('#status').val(estoria.status);
-			$('#tipo').val(estoria.tipo);
-			$('#nome').val(estoria.nome);
-			$('#descricao').val(estoria.descricao);
-			$('#como_testar').val(estoria.como_testar);
-			
-			$('#botoes').append("<button id='excluir_estoria' type='button' onclick='exclui_estoria(" + estoria.id + ");'>Excluir</button>");
-			
-			$('#editar_estoria').dialog('open');
-			desbloqueia_tela();
-		});
+		preenche_dialogo_estoria
+	);
+}
+
+function preenche_dialogo_estoria(resposta) {
+	$("#excluir_estoria").remove();
+	$("#anexos12").empty();
+	
+	var estoria = resposta[0].estoria;
+	
+	if (estoria.anexos.length == 0) {
+		$('#anexos12').append(
+			'<input type="hidden" name="id_estoria" id="id_estoria_anexo" />' +
+				'<label>Anexo: </label>' +
+ 				'<input type="file" name="anexo" id="anexo" style=" height: 25px;" /><br /><br />'
+		);
+	} else {
+		$('#anexos12').append(
+			"<a href='/estorias/download_anexo?id_anexo=" + estoria.anexos[0].id + "'>" +
+			 "Download Anexo</a>"
+		);
+		$('#anexos12').append(
+			"<a href='javascript:void(0);' onclick='exclui_anexo(" + estoria.anexos[0].id + ");' style='margin-left: 15px; font-size: 10px;'>" +
+			 "Excluir</a><br /><br />"
+		);
+	}
+	
+	$('#id_estoria').val(estoria.id);
+	$('#id_estoria_anexo').val(estoria.id);
+	$('#importancia').val(estoria.importancia);
+	$('#estimativa').val(estoria.estimativa);
+	$('#status').val(estoria.status);
+	$('#tipo').val(estoria.tipo);
+	$('#nome').val(estoria.nome);
+	$('#descricao').val(estoria.descricao);
+	$('#como_testar').val(estoria.como_testar);
+	
+	$('#botoes').append("<button id='excluir_estoria' type='button' onclick='exclui_estoria(" + estoria.id + ");'>Excluir</button>");
+	
+	$('#editar_estoria').dialog('open');
+	desbloqueia_tela();
 }
 
 function nova_estoria() {
@@ -204,3 +207,5 @@ function desbloqueia_tela() {
 function retornoAnexar(retorno) {
 	$.unblockUI();
 }
+
+

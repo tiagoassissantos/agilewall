@@ -1,4 +1,6 @@
 AgileWall::Application.routes.draw do
+  get "producao", :controller => :producao, :action => :index
+
   get "usuarios/inclui_user"
   get "usuarios/pesquisa"
   get "usuarios", :controller => :usuarios, :action => :index
@@ -12,6 +14,7 @@ AgileWall::Application.routes.draw do
   
   get 'quadro', :controller => :quadro, :action => :index
   
+  get '/estorias/lista_producao'
   get '/estorias/excluir_anexo'
   get '/estorias/download_anexo'
   get '/estorias/lista_backlog'

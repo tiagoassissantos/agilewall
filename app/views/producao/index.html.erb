@@ -1,0 +1,105 @@
+<style>
+a:link {color: #000; text-decoration: none; font-size: 90%;}
+a:visited {color: #000; text-decoration: none; font-size: 90%;}
+a:hover {color: #555; text-decoration: none; font-size: 90%;}
+a:active {color: #000; text-decoration: none; font-size: 90%;}
+a img {border-width:0;}
+</style>
+
+<h3>Estórias em Produção</h3>
+
+<div id='estorias'></div>
+
+<div id="editar_estoria" title="Editar Estória">
+	<%= render 'estorias/form' %>
+	
+	<div id='botoes' class="actions">
+    	<button type="button" onclick="$('#editar_estoria').dialog('close');">Fechar</button>
+  	</div>
+</div>
+
+<%= javascript_include_tag 'jqueryui/jquery.ui.core.min.js' %>
+<%= javascript_include_tag 'jqueryui/jquery.ui.widget.min.js' %>
+<%= javascript_include_tag 'jqueryui/jquery.ui.position.min.js' %>
+<%= javascript_include_tag 'jqueryui/jquery.ui.dialog.min.js' %>
+<%= javascript_include_tag 'jqueryui/jquery.ui.button.min.js' %>
+<%= javascript_include_tag 'jqueryui/jquery.ui.autocomplete.min.js' %>
+<%= javascript_include_tag 'jquery.form.js' %>
+<%= javascript_include_tag 'jquery.validate.js' %>
+<%= javascript_include_tag 'core.js' %>
+
+<script>
+$(document).ready( function () {
+	$.getJSON('/estorias/lista_producao',
+		{projeto: queryString("projeto")},
+		function(estorias) {
+			preenche_historico(estorias);
+		}
+	);
+});
+
+function preenche_historico(estorias) {
+	var data_a = "0";
+	for (var i = 0; i < estorias.length; i++) {
+		var estoria = estorias[i].estoria;
+		var data = estoria.data_conclusao;
+
+		if (data == data_a) {
+			$("#" + data).append("<a href='javascript:void(0);' onclick='busca_estoria_prod(" + estoria.id + ");'>" +
+				"<div id='estoria" + estoria.id + "' style='border: 1px solid blue; margin: 5px; background-color: #FFFF00;'></div>" +
+				"</a>");
+			$("#estoria" + estoria.id).append(estoria.nome + "<br /");
+
+		} else {
+			$("#estorias").append("<div id='" + data + "' style='border: 1px solid blue; margin-bottom: 10px;'></div>");
+			$("#" + data).append("<h3>" + data + "</h3>");
+			
+			$("#" + data).append("<a href='javascript:void(0);' onclick='busca_estoria_prod(" + estoria.id + ");'>" +
+				"<div id='estoria" + estoria.id + "' style='border: 1px solid blue; margin: 5px; background-color: #FFFF00;'></div>" +
+				"</a>");
+			$("#estoria" + estoria.id).append(estoria.nome + "<br /");
+		}
+		data_a = data;
+	}
+}
+
+
+function queryString(parameter) {
+	var loc = location.search.substring(1, location.search.length);
+	var param_value = false;
+	var params = loc.split("&");
+	
+	for (i=0; i<params.length;i++) {
+		param_name = params[i].substring(0,params[i].indexOf('='));
+		if (param_name == parameter) {
+			param_value = params[i].substring(params[i].indexOf('=')+1);
+		}
+	}
+	
+	if (param_value) {
+		return param_value;
+	
+	} else {
+		return false;
+	}
+}
+
+function busca_estoria_prod(id_estoria) {
+	bloqueia_tela();
+	$.getJSON('/estorias/' + id_estoria + '/busca',
+		preenche_dialogo_estoria_prod
+	);
+}
+
+function preenche_dialogo_estoria_prod(resposta) {
+	preenche_dialogo_estoria(resposta);
+	$("#excluir_estoria").remove();
+	var estoria = resposta[0].estoria;
+	
+	if (estoria.anexos.length == 0) {
+		$("#anexos12").empty();
+	} else {
+		$("#anexos12 a").remove(":contains('Excluir')");
+	}
+}
+</script>

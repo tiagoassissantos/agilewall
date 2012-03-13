@@ -51,10 +51,12 @@ class EstoriasController < ApplicationController
     @estoria.projeto = Projeto.find(params[:projeto_id])
     
     if @estoria.save
-      anexo = Anexo.new
-      anexo.arquivo = params[:anexo]
-      anexo.estoria = @estoria
-      anexo.save!
+      if params[:anexo] != nil
+        anexo = Anexo.new
+        anexo.arquivo = params[:anexo]
+        anexo.estoria = @estoria
+        anexo.save!
+      end
       
       @evento = Evento.find(1)
       historico = Historico.new
@@ -123,10 +125,12 @@ class EstoriasController < ApplicationController
         @estoria.save
       end
       
-      anexo = Anexo.new
-      anexo.arquivo = params[:anexo]
-      anexo.estoria = @estoria
-      anexo.save!
+      if params[:anexo] != nil
+        anexo = Anexo.new
+        anexo.arquivo = params[:anexo]
+        anexo.estoria = @estoria
+        anexo.save!
+      end
       
       historico = Historico.new
       historico.evento = @evento
@@ -153,6 +157,11 @@ class EstoriasController < ApplicationController
   
   def lista
     @estorias = Estoria.where(:status => [3, 4, 5, 6, 7, 8], :projeto_id => params[:projeto]).order('importancia DESC')
+    render :json => @estorias
+  end
+  
+  def lista_producao
+    @estorias = Estoria.where(:status => [10], :projeto_id => params[:projeto]).order('data_conclusao DESC')
     render :json => @estorias
   end
   
