@@ -14,6 +14,7 @@ AgileWall::Application.routes.draw do
   
   get 'quadro', :controller => :quadro, :action => :index
   
+  post '/estorias/atualizar_status'
   get '/estorias/lista_producao'
   get '/estorias/excluir_anexo'
   get '/estorias/download_anexo'
@@ -25,7 +26,6 @@ AgileWall::Application.routes.draw do
   resources :estorias do
     member do
       post :destroy
-      get :altera_status
       get :busca
     end
   end

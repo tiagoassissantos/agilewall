@@ -3,7 +3,6 @@ class CreateHistoricos < ActiveRecord::Migration
     create_table :historicos do |t|
       t.references :evento
       t.references :estoria
-      t.string :descricao
       t.date :data
 
       t.timestamps

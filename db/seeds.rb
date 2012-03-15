@@ -7,14 +7,15 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
-Evento.create! :id => 1, :nome => 'Estória Criada', :descricao => 'Estória Criada'
-Evento.create! :id => 2, :nome => 'Estória Aprovada', :descricao => 'Estória Aprovada'
-Evento.create! :id => 3, :nome => 'Estória Retornou ao Backlog', :descricao => 'Estória retornou ao backlog, podendo ser desenvolvida posteriormente'
-Evento.create! :id => 4, :nome => 'Início Desenvolvimento', :descricao => 'Início Desenvolvimento'
-Evento.create! :id => 5, :nome => 'Desenvolvimento Concluído', :descricao => 'Desenvolvimento Concluído'
-Evento.create! :id => 6, :nome => 'Impedimento', :descricao => 'Estória teve um impedimento e está aguardando solução'
-Evento.create! :id => 7, :nome => 'Impedimento resolvido', :descricao => 'O Impedimento foi resolvido'
-Evento.create! :id => 8, :nome => 'Início Testes', :descricao => 'Início Testes'
-Evento.create! :id => 9, :nome => 'Testes Concluídos', :descricao => 'Testes Concluídos'
-Evento.create! :id => 10, :nome => 'Entrada em Produção', :descricao => 'Estória foi colocada em Produção'
-Evento.create! :id => 11, :nome => 'Estória Descartada', :descricao => 'Estória foi descartada e não será mais desenvolvida'
+Evento.create! :id => 1, :nome => 'Criada', :descricao => 'Estória foi criada'
+Evento.create! :id => 2, :nome => 'Aprovada', :descricao => 'Estória está agora com status Aprovada'
+Evento.create! :id => 3, :nome => 'Aguardando Desenvolvimento', :descricao => 'Estória está agora com status Em Desenvolvimento'
+Evento.create! :id => 4, :nome => 'Em Desenvolvimento', :descricao => 'Estória está agora com status Em Desenvolvimento'
+Evento.create! :id => 5, :nome => 'Desenvolvimento Concluído', :descricao => 'Estória está agora com status Desenvolvimento Concluído'
+Evento.create! :id => 6, :nome => 'Impedimento', :descricao => 'Estória está agora com status Em Impedimento, e está aguardando solução'
+Evento.create! :id => 7, :nome => 'Em Testes', :descricao => 'Estória está agora com status Em Testes'
+Evento.create! :id => 8, :nome => 'Testes Concluídos', :descricao => 'Estória está agora com status Testes Concluídos'
+Evento.create! :id => 9, :nome => 'Entrada em Produção', :descricao => 'Estória foi colocada em Produção'
+
+Evento.create! :id => 10, :nome => 'Estória Excluída', :descricao => 'Estória foi excluída e não será mais desenvolvida'
+Evento.create! :id => 11, :nome => 'Impedimento resolvido', :descricao => 'O Impedimento foi resolvido'

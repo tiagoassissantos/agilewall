@@ -3,21 +3,18 @@ class EstoriasController < ApplicationController
   layout 'layout_projetos'
   before_filter :authenticate_user!
   
-  # GET /estorias
-  # GET /estorias.xml
+  
   def index
-    #begin
+    begin
       @projeto = Projeto.find( params[:projeto] )
       if cannot? :read, @projeto
         redirect_to "/dashboard"
       end
-    #rescue Exception => e
-    #   redirect_to "/dashboard"
-    #end
+    rescue Exception => e
+       redirect_to "/dashboard"
+    end
   end
-
-  # GET /estorias/1
-  # GET /estorias/1.xml
+  
   def show
     @estoria = Estoria.find(params[:id])
 
@@ -26,9 +23,7 @@ class EstoriasController < ApplicationController
       format.xml  { render :xml => @estoria }
     end
   end
-
-  # GET /estorias/new
-  # GET /estorias/new.xml
+  
   def new
     @estoria = Estoria.new
 
@@ -37,14 +32,11 @@ class EstoriasController < ApplicationController
       format.xml  { render :xml => @estoria }
     end
   end
-
-  # GET /estorias/1/edit
+  
   def edit
     @estoria = Estoria.find(params[:id])
   end
-
-  # POST /estorias
-  # POST /estorias.xml
+  
   def create
     @estoria = Estoria.new(params[:estoria])
     @estoria.status = 1
@@ -72,9 +64,7 @@ class EstoriasController < ApplicationController
       render :json => @estoria.errors
     end
   end
-
-  # PUT /estorias/1
-  # PUT /estorias/1.xml
+  
   def update
     @estoria = Estoria.find(params[:id])
 
@@ -87,12 +77,18 @@ class EstoriasController < ApplicationController
     end
   end
 
-  # DELETE /estorias/1
-  # DELETE /estorias/1.xml
   def destroy
     @estoria = Estoria.find(params[:id])
     @estoria.destroy
-
+    
+    @evento = Evento.find(10)
+    historico = Historico.new
+    historico.evento = @evento
+    historico.estoria = @estoria
+    historico.data = Date.today
+    historico.user = current_user
+    historico.save
+    
     render :json => @estoria
   end
   
@@ -100,30 +96,6 @@ class EstoriasController < ApplicationController
     @estoria = Estoria.find(params[:id])
     
     if @estoria.update_attributes(params[:estoria])
-      
-      if @estoria.status == 2
-        @evento = Evento.find(2)
-        
-      elsif @estoria.status == 4
-        @evento = Evento.find(4)
-        
-      elsif @estoria.status == 5
-        @evento = Evento.find(5)
-      
-      elsif @estoria.status == 6
-        @evento = Evento.find(6)
-        
-      elsif @estoria.status == 7
-        @evento = Evento.find(8)
-        
-      elsif @estoria.status == 8
-        @evento = Evento.find(9)
-        
-      elsif @estoria.status == 10
-        @evento = Evento.find(10)
-        @estoria.data_conclusao = Date.today
-        @estoria.save
-      end
       
       if params[:anexo] != nil
         anexo = Anexo.new
@@ -145,6 +117,60 @@ class EstoriasController < ApplicationController
     end
   end
   
+  def atualizar_status
+    @estoria = Estoria.find(params[:id])
+    status_anterior = @estoria.status 
+    @estoria.status = params[:status]
+    
+    if @estoria.update_attributes(params[:estoria])
+      
+      if @estoria.status == 2
+        @evento = Evento.find(2)
+        
+      elsif @estoria.status == 3
+        @evento = Evento.find(3)
+        
+      elsif @estoria.status == 4
+        
+        if status_anterior == 3
+          @evento = Evento.find(4)
+        elsif status_anterior == 6
+          @evento = Evento.find(11)
+        end
+        
+      elsif @estoria.status == 5
+        @evento = Evento.find(5)
+      
+      elsif @estoria.status == 6
+        @evento = Evento.find(6)
+        
+      elsif @estoria.status == 7
+        @evento = Evento.find(7)
+        
+      elsif @estoria.status == 8
+        @evento = Evento.find(8)
+        
+      elsif @estoria.status == 9
+        @evento = Evento.find(9)
+        @estoria.data_conclusao = Date.today
+        @estoria.save
+      end
+      
+      historico = Historico.new
+      historico.evento = @evento
+      historico.estoria = @estoria
+      historico.data = Date.today
+      historico.user = current_user
+      historico.save
+      
+      resposta = Hash.new
+      resposta[:resp] = "OK"
+      render :json => resposta
+    else
+      render :json => @estoria.errors
+    end
+  end
+  
   def busca
     @estoria = Estoria.find_all_by_id(params[:id])
     render :json => @estoria.to_json(:include => :anexos)
@@ -161,7 +187,7 @@ class EstoriasController < ApplicationController
   end
   
   def lista_producao
-    @estorias = Estoria.where(:status => [10], :projeto_id => params[:projeto]).order('data_conclusao DESC')
+    @estorias = Estoria.where(:status => [9], :projeto_id => params[:projeto]).order('data_conclusao DESC')
     render :json => @estorias
   end
   

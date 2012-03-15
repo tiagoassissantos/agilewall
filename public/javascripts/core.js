@@ -116,6 +116,7 @@ function busca_estoria(id_estoria) {
 function preenche_dialogo_estoria(resposta) {
 	$("#excluir_estoria").remove();
 	$("#anexos12").empty();
+	$("#status_estoria").empty();
 	
 	var estoria = resposta[0].estoria;
 	
@@ -140,7 +141,39 @@ function preenche_dialogo_estoria(resposta) {
 	$('#id_estoria_anexo').val(estoria.id);
 	$('#importancia').val(estoria.importancia);
 	$('#estimativa').val(estoria.estimativa);
-	$('#status').val(estoria.status);
+	
+	if (estoria.status == 1) {
+		$("#status_estoria").append("<button type='button' onclick='mudar_status(2, " + estoria.id + ")'>Aprovar</button>");
+		
+	} else if (estoria.status == 2) {
+		$("#status_estoria").append("<button type='button' onclick='mudar_status(1, " + estoria.id + ")'>Reprovar</button>");
+		$("#status_estoria").append("<button type='button' onclick='mudar_status(3, " + estoria.id + ")'>Escolher</button>");
+		
+	} else if (estoria.status == 3) {
+		$("#status_estoria").append("<button type='button' onclick='mudar_status(2, " + estoria.id + ")'>Voltar backlog</button>");
+		$("#status_estoria").append("<button type='button' onclick='mudar_status(4, " + estoria.id + ")'>Desenvolver</button>");
+		
+	} else if (estoria.status == 4) {
+		$("#status_estoria").append("<button type='button' onclick='mudar_status(3, " + estoria.id + ")'>Parar</button>");
+		$("#status_estoria").append("<button type='button' onclick='mudar_status(6, " + estoria.id + ")'>Impedimento</button>");
+		$("#status_estoria").append("<button type='button' onclick='mudar_status(5, " + estoria.id + ")'>Finalizar</button>");
+		
+	} else if (estoria.status == 5) {
+		$("#status_estoria").append("<button type='button' onclick='mudar_status(4, " + estoria.id + ")'>Voltar Desenvolvimento</button>");
+		$("#status_estoria").append("<button type='button' onclick='mudar_status(7, " + estoria.id + ")'>Testar</button>");
+		
+	} else if (estoria.status == 6) {
+		$("#status_estoria").append("<button type='button' onclick='mudar_status(4, " + estoria.id + ")'>Desenvolver</button>");
+		
+	} else if (estoria.status == 7) {
+		$("#status_estoria").append("<button type='button' onclick='mudar_status(5, " + estoria.id + ")'>Parar Teste</button>");
+		$("#status_estoria").append("<button type='button' onclick='mudar_status(8, " + estoria.id + ")'>Finalizar Teste</button>");
+		
+	} else if (estoria.status == 8) {
+		$("#status_estoria").append("<button type='button' onclick='mudar_status(7, " + estoria.id + ")'>Em Teste</button>");
+		$("#status_estoria").append("<button type='button' onclick='mudar_status(9, " + estoria.id + ")'>Finalizar Estória</button>");
+	}
+	
 	$('#tipo').val(estoria.tipo);
 	$('#nome').val(estoria.nome);
 	$('#descricao').val(estoria.descricao);
@@ -149,6 +182,8 @@ function preenche_dialogo_estoria(resposta) {
 	$('#botoes').append("<button id='excluir_estoria' type='button' onclick='exclui_estoria(" + estoria.id + ");'>Excluir</button>");
 	
 	$('#editar_estoria').dialog('open');
+	
+	//$("#status_estoria").buttonset();
 	desbloqueia_tela();
 }
 
@@ -183,6 +218,16 @@ function limpa_dialogo_estoria() {
 function exclui_anexo(anexo) {
 	id_anexo = anexo;
 	$("#confirma_exclusao_anexo").dialog("open");
+}
+
+function mudar_status(status, estoria) {
+	$.ajax({
+  		type: 'POST',
+  		url: 'estorias/atualizar_status',
+  		data: {id: estoria, status: status},
+  		dataType: 'json',
+  		success: retornoAtualiza
+	});
 }
 
 function bloqueia_tela() {
