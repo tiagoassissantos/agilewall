@@ -3,30 +3,80 @@ class Ability
 
   def initialize(user)
     can :read, Projeto do |projeto|
-      projeto.user_ids.include? user.id
+      pode = false
+      projeto.permissoes.each do |permissao|
+        if permissao.user_id == user.id
+          pode = true
+          break
+        end
+      end
+      pode
     end
     
-    # Define abilities for the passed in user here. For example:
-    #
-    #   user ||= User.new # guest user (not logged in)
-    #   if user.admin?
-    #     can :manage, :all
-    #   else
-    #     can :read, :all
-    #   end
-    #
-    # The first argument to `can` is the action you are giving the user permission to do.
-    # If you pass :manage it will apply to every action. Other common actions here are
-    # :read, :create, :update and :destroy.
-    #
-    # The second argument is the resource the user can perform the action on. If you pass
-    # :all it will apply to every resource. Otherwise pass a Ruby class of the resource.
-    #
-    # The third argument is an optional hash of conditions to further filter the objects.
-    # For example, here the user can only update published articles.
-    #
-    #   can :update, Article, :published => true
-    #
-    # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
+    can :administrar, Projeto do |projeto|
+      pode = false
+      projeto.permissoes.each do |permissao|
+        if permissao.user_id == user.id
+          if permissao.papel.nome == Papel::GERENTE || permissao.papel.nome == Papel::DONO || permissao.papel.nome == Papel::CLIENTE
+            pode = true
+            break
+          end
+        end
+      end
+      pode
+    end
+    
+    can :desenvolver, Projeto do |projeto|
+      pode = false
+      projeto.permissoes.each do |permissao|
+        if permissao.user_id == user.id
+          if permissao.papel.nome == Papel::GERENTE || permissao.papel.nome == Papel::MEMBRO_EQUIPE
+            pode = true
+            break
+          end
+        end
+      end
+      pode
+    end
+    
+    can :testar, Projeto do |projeto|
+      pode = false
+      projeto.permissoes.each do |permissao|
+        if permissao.user_id == user.id
+          if permissao.papel.nome == Papel::GERENTE || permissao.papel.nome == Papel::MEMBRO_EQUIPE || permissao.papel.nome == Papel::TESTADOR
+            pode = true
+            break
+          end
+        end
+      end
+      pode
+    end
+    
+    can :commitar, Projeto do |projeto|
+      pode = false
+      projeto.permissoes.each do |permissao|
+        if permissao.user_id == user.id
+          if permissao.papel.nome == Papel::GERENTE
+            pode = true
+            break
+          end
+        end
+      end
+      pode
+    end
+    
+    
+    can :gerenciar_usuario, Projeto do |projeto|
+      pode = false
+      projeto.permissoes.each do |permissao|
+        if permissao.user_id == user.id
+          if permissao.papel.nome == Papel::GERENTE || permissao.papel.nome == Papel::DONO
+            pode = true
+            break
+          end
+        end
+      end
+      pode
+    end
   end
 end

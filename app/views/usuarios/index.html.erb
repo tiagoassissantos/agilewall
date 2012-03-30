@@ -4,8 +4,13 @@
 
 <h2>Usuários do projeto</h2>
 <div id="usuarios_participantes">
-	<% @projeto.users.each do |user| %>
-		<%= user.email %><br />
+	<% @usuarios.each do |usuario| %>
+		<%= usuario.email %>
+		<% usuario.permissoes.each do |permissao| %>
+			- <label title="<%=permissao.papel.descricao%>"> <%= permissao.papel.nome %> </label>
+			<a href="javascript:void(0);" title="Remover Permissão" onclick="remove_permissao(<%= permissao.id %>);"><img src="/images/remove_small.png"></a>
+		<% end %>
+		<br />
 	<% end %>
 </div>
 

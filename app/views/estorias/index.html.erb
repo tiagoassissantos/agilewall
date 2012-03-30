@@ -65,16 +65,16 @@ a img {border-width:0;}
 	</select>
   </div>
   <div class="field" style="width: 500px;">
-    <label>Nome</label><br />
-    <input type="text" name="estoria[nome]" id="nome_nova_estoria" style="width: 575px;" />
+    <label>Titulo</label><br />
+    <input type="text" name="estoria[titulo]" id="titulo_nova_estoria" style="width: 575px;" />
   </div>
   <div class="field">
     <label>Descrição</label><br />
     <textarea name="estoria[descricao]" id="descricao_nova_estoria" style="width: 575px; height: 80px;"></textarea>
   </div>
   <div class="field">
-    <label>Como Testar</label><br />
-    <textarea name="estoria[como_testar]" id="como_testar_nova_estoria" style="width: 575px; height: 80px;"></textarea>
+    <label>Observacoes</label><br />
+    <textarea name="estoria[observacoes]" id="observacoes_nova_estoria" style="width: 575px; height: 80px;"></textarea>
   </div>
 
 	
@@ -82,7 +82,6 @@ a img {border-width:0;}
     	<label>Anexo</label>
     	<input type="file" name="anexo_nova_estoria" id="anexo" style="width: 575px;" />
   	</div>
-	
 	
 	<div class="actions">
     	<button type="submit">Salvar</button>
@@ -106,6 +105,5 @@ a img {border-width:0;}
 <%= javascript_include_tag 'backlog.js' %>
 
 <script>
-var id_projeto = 0;
-id_projeto = <%= @projeto.id %>;
+var id_projeto = <%= @projeto.id %>;
 </script>

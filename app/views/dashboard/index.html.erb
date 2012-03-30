@@ -1,7 +1,15 @@
 <div>
 	<h2>Usuários do projeto</h2>
-	<%= link_to 'Gerenciar Usuários', usuarios_path(:projeto => @projeto.id) %><br />
-	<% @projeto.users.each do |user| %>
-		<%= user.email %><br />
+	
+	<% if can? :gerenciar_usuario, @projeto %>
+		<%= link_to 'Gerenciar Usuários', usuarios_path(:projeto => @projeto.id) %><br />
+	<% end %>
+	
+	<% @usuarios.each do |usuario| %>
+		<%= usuario.email %>
+		<% usuario.permissoes.each do |permissao| %>
+			- <label title="<%=permissao.papel.descricao%>"> <%= permissao.papel.nome %> </label>
+		<% end %>
+		<br />
 	<% end %>
 </div>

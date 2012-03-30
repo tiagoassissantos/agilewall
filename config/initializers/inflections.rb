@@ -6,4 +6,5 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'estoria', 'estorias'
   inflect.irregular 'papel', 'papeis'
   inflect.irregular 'status', 'status'
+  inflect.irregular 'permissao', 'permissoes'
 end

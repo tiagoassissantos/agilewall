@@ -53,7 +53,7 @@ function exibe_estorias_no_quadro(estoria, quadro) {
 		"<a href='javascript:void(0);' onclick='busca_estoria(" + estoria.id + ");'>" +
 		"<div style='margin: 4px; background-color: #FFFF00; padding: 7px; width: 90%'>" +
 			"<span style='width: 50px; display: block; float: left;'>" + estoria.importancia + "</span>" +
-			"<span>" + estoria.nome + "</span><br />" +
+			"<span>" + estoria.titulo + "</span><br />" +
 		"</div>" +
 		"</a>" +
 		"</div>"
@@ -66,7 +66,7 @@ function exibe_estorias_em_impedimento_no_quadro(estoria, quadro) {
 		"<a href='javascript:void(0);' onclick='busca_estoria(" + estoria.id + ");'>" +
 		"<div style='margin: 4px; background-color: #FFFF00; padding: 7px; width: 49%'>" +
 			"<span style='width: 50px; display: block; float: left;'>" + estoria.importancia + "</span>" +
-			"<span>" + estoria.nome + "</span><br />" +
+			"<span>" + estoria.titulo + "</span><br />" +
 		"</div>" +
 		"</a>" +
 		"</div>"

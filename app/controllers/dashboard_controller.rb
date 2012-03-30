@@ -9,6 +9,9 @@ class DashboardController < ApplicationController
       if cannot? :read, @projeto
         redirect_to "/projetos"
       end
+      
+      @usuarios = User.joins(:permissoes).where('permissoes.projeto_id' => @projeto.id).group('id')
+      
     rescue Exception => e
       puts e
       redirect_to "/projetos"

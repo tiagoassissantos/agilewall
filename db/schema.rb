@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120309000257) do
+ActiveRecord::Schema.define(:version => 20120329001908) do
 
   create_table "anexos", :force => true do |t|
     t.string   "arquivo"
@@ -24,9 +24,9 @@ ActiveRecord::Schema.define(:version => 20120309000257) do
     t.float    "estimativa"
     t.integer  "status"
     t.date     "data_conclusao"
-    t.string   "nome"
+    t.string   "titulo"
     t.text     "descricao"
-    t.text     "como_testar"
+    t.text     "observacoes"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "tipo"
@@ -57,6 +57,14 @@ ActiveRecord::Schema.define(:version => 20120309000257) do
     t.datetime "updated_at"
   end
 
+  create_table "permissoes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "projeto_id"
+    t.integer  "papel_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "projetos", :force => true do |t|
     t.string   "nome"
     t.string   "descricao"
@@ -67,12 +75,6 @@ ActiveRecord::Schema.define(:version => 20120309000257) do
   create_table "projetos_users", :id => false, :force => true do |t|
     t.integer "projeto_id"
     t.integer "user_id"
-  end
-
-  create_table "statuses", :force => true do |t|
-    t.string   "nome"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|
@@ -88,7 +90,6 @@ ActiveRecord::Schema.define(:version => 20120309000257) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "papel_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

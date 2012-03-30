@@ -118,7 +118,7 @@ function preenche_dialogo_estoria(resposta) {
 	$("#anexos12").empty();
 	$("#status_estoria").empty();
 	
-	var estoria = resposta[0].estoria;
+	var estoria =  $.parseJSON(resposta.estoria).estoria;
 	
 	if (estoria.anexos.length == 0) {
 		$('#anexos12').append(
@@ -143,47 +143,70 @@ function preenche_dialogo_estoria(resposta) {
 	$('#estimativa').val(estoria.estimativa);
 	
 	if (estoria.status == 1) {
-		$("#status_estoria").append("<button type='button' onclick='mudar_status(2, " + estoria.id + ")'>Aprovar</button>");
+		if (resposta.pode_administrar) {
+			$("#status_estoria").append("<button type='button' onclick='mudar_status(2, " + estoria.id + ")'>Aprovar</button>");
+		}
 		
 	} else if (estoria.status == 2) {
-		$("#status_estoria").append("<button type='button' onclick='mudar_status(1, " + estoria.id + ")'>Reprovar</button>");
-		$("#status_estoria").append("<button type='button' onclick='mudar_status(3, " + estoria.id + ")'>Escolher</button>");
+		if (resposta.pode_administrar) {
+			$("#status_estoria").append("<button type='button' onclick='mudar_status(1, " + estoria.id + ")'>Reprovar</button>");
+			$("#status_estoria").append("<button type='button' onclick='mudar_status(3, " + estoria.id + ")'>Escolher</button>");
+		}
 		
 	} else if (estoria.status == 3) {
-		$("#status_estoria").append("<button type='button' onclick='mudar_status(2, " + estoria.id + ")'>Voltar backlog</button>");
-		$("#status_estoria").append("<button type='button' onclick='mudar_status(4, " + estoria.id + ")'>Desenvolver</button>");
+		if (resposta.pode_administrar) {
+			$("#status_estoria").append("<button type='button' onclick='mudar_status(2, " + estoria.id + ")'>Voltar backlog</button>");
+		}
+		if (resposta.pode_desenvolver) {
+			$("#status_estoria").append("<button type='button' onclick='mudar_status(4, " + estoria.id + ")'>Desenvolver</button>");
+		}
 		
 	} else if (estoria.status == 4) {
-		$("#status_estoria").append("<button type='button' onclick='mudar_status(3, " + estoria.id + ")'>Parar</button>");
-		$("#status_estoria").append("<button type='button' onclick='mudar_status(6, " + estoria.id + ")'>Impedimento</button>");
-		$("#status_estoria").append("<button type='button' onclick='mudar_status(5, " + estoria.id + ")'>Finalizar</button>");
+		if (resposta.pode_desenvolver) {
+			$("#status_estoria").append("<button type='button' onclick='mudar_status(3, " + estoria.id + ")'>Parar</button>");
+			$("#status_estoria").append("<button type='button' onclick='mudar_status(6, " + estoria.id + ")'>Impedimento</button>");
+			$("#status_estoria").append("<button type='button' onclick='mudar_status(5, " + estoria.id + ")'>Finalizar</button>");
+		}
 		
 	} else if (estoria.status == 5) {
-		$("#status_estoria").append("<button type='button' onclick='mudar_status(4, " + estoria.id + ")'>Voltar Desenvolvimento</button>");
-		$("#status_estoria").append("<button type='button' onclick='mudar_status(7, " + estoria.id + ")'>Testar</button>");
+		if (resposta.pode_desenvolver) {
+			$("#status_estoria").append("<button type='button' onclick='mudar_status(4, " + estoria.id + ")'>Voltar Desenvolvimento</button>");
+		}
+		if (resposta.pode_testar) {
+			$("#status_estoria").append("<button type='button' onclick='mudar_status(7, " + estoria.id + ")'>Testar</button>");
+		}
 		
 	} else if (estoria.status == 6) {
-		$("#status_estoria").append("<button type='button' onclick='mudar_status(4, " + estoria.id + ")'>Desenvolver</button>");
+		if (resposta.pode_desenvolver) {
+			$("#status_estoria").append("<button type='button' onclick='mudar_status(4, " + estoria.id + ")'>Desenvolver</button>");
+		}
 		
 	} else if (estoria.status == 7) {
-		$("#status_estoria").append("<button type='button' onclick='mudar_status(5, " + estoria.id + ")'>Parar Teste</button>");
-		$("#status_estoria").append("<button type='button' onclick='mudar_status(8, " + estoria.id + ")'>Finalizar Teste</button>");
+		if (resposta.pode_testar) {
+			$("#status_estoria").append("<button type='button' onclick='mudar_status(5, " + estoria.id + ")'>Parar Teste</button>");
+			$("#status_estoria").append("<button type='button' onclick='mudar_status(8, " + estoria.id + ")'>Finalizar Teste</button>");
+		}
 		
 	} else if (estoria.status == 8) {
-		$("#status_estoria").append("<button type='button' onclick='mudar_status(7, " + estoria.id + ")'>Em Teste</button>");
-		$("#status_estoria").append("<button type='button' onclick='mudar_status(9, " + estoria.id + ")'>Finalizar Estória</button>");
+		if (resposta.pode_testar) {
+			$("#status_estoria").append("<button type='button' onclick='mudar_status(7, " + estoria.id + ")'>Testar Novamente</button>");
+		}
+		if (resposta.pode_commitar) {
+			$("#status_estoria").append("<button type='button' onclick='mudar_status(9, " + estoria.id + ")'>Finalizar Estória</button>");
+		}
 	}
 	
 	$('#tipo').val(estoria.tipo);
-	$('#nome').val(estoria.nome);
+	$('#titulo1').val(estoria.titulo);
 	$('#descricao').val(estoria.descricao);
-	$('#como_testar').val(estoria.como_testar);
+	$('#observacoes').val(estoria.observacoes);
 	
-	$('#botoes').append("<button id='excluir_estoria' type='button' onclick='exclui_estoria(" + estoria.id + ");'>Excluir</button>");
+	if (resposta.pode_administrar) {
+		$('#botoes').append("<button id='excluir_estoria' type='button' onclick='exclui_estoria(" + estoria.id + ");'>Excluir</button>");
+	}
 	
 	$('#editar_estoria').dialog('open');
 	
-	//$("#status_estoria").buttonset();
 	desbloqueia_tela();
 }
 
@@ -210,9 +233,9 @@ function limpa_dialogo_estoria() {
 	$("#id_nova_estoria").val("");
 	$("#importancia_nova_estoria").val("");
 	$("#estimativa_nova_estoria").val("");
-	$("#nome_nova_estoria").val("");
+	$("#titulo_nova_estoria").val("");
 	$("#descricao_nova_estoria").val("");
-	$("#como_testar_nova_estoria").val("");
+	$("#observacoes_nova_estoria").val("");
 }
 
 function exclui_anexo(anexo) {
@@ -221,6 +244,7 @@ function exclui_anexo(anexo) {
 }
 
 function mudar_status(status, estoria) {
+	bloqueia_tela();
 	$.ajax({
   		type: 'POST',
   		url: 'estorias/atualizar_status',

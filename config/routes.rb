@@ -1,6 +1,7 @@
 AgileWall::Application.routes.draw do
   get "producao", :controller => :producao, :action => :index
-
+  
+  get "usuarios/remove_permissao"
   get "usuarios/inclui_user"
   get "usuarios/pesquisa"
   get "usuarios", :controller => :usuarios, :action => :index

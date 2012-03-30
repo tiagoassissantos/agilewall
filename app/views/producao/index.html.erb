@@ -48,7 +48,7 @@ function preenche_historico(estorias) {
 			$("#" + data).append("<a href='javascript:void(0);' onclick='busca_estoria_prod(" + estoria.id + ");'>" +
 				"<div id='estoria" + estoria.id + "' style='border: 1px solid blue; margin: 5px; background-color: #FFFF00;'></div>" +
 				"</a>");
-			$("#estoria" + estoria.id).append(estoria.nome + "<br /");
+			$("#estoria" + estoria.id).append(estoria.titulo + "<br /");
 
 		} else {
 			$("#estorias").append("<div id='" + data + "' style='border: 1px solid blue; margin-bottom: 10px;'></div>");
@@ -57,7 +57,7 @@ function preenche_historico(estorias) {
 			$("#" + data).append("<a href='javascript:void(0);' onclick='busca_estoria_prod(" + estoria.id + ");'>" +
 				"<div id='estoria" + estoria.id + "' style='border: 1px solid blue; margin: 5px; background-color: #FFFF00;'></div>" +
 				"</a>");
-			$("#estoria" + estoria.id).append(estoria.nome + "<br /");
+			$("#estoria" + estoria.id).append(estoria.titulo + "<br /");
 		}
 		data_a = data;
 	}
@@ -94,7 +94,7 @@ function busca_estoria_prod(id_estoria) {
 function preenche_dialogo_estoria_prod(resposta) {
 	preenche_dialogo_estoria(resposta);
 	$("#excluir_estoria").remove();
-	var estoria = resposta[0].estoria;
+	var estoria = $.parseJSON(resposta.estoria).estoria;
 	
 	if (estoria.anexos.length == 0) {
 		$("#anexos12").empty();

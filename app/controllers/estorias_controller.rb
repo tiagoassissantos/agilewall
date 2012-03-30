@@ -3,7 +3,6 @@ class EstoriasController < ApplicationController
   layout 'layout_projetos'
   before_filter :authenticate_user!
   
-  
   def index
     begin
       @projeto = Projeto.find( params[:projeto] )
@@ -172,8 +171,15 @@ class EstoriasController < ApplicationController
   end
   
   def busca
-    @estoria = Estoria.find_all_by_id(params[:id])
-    render :json => @estoria.to_json(:include => :anexos)
+    @estoria = Estoria.find(params[:id])
+    
+    resposta = Hash.new
+    resposta[:estoria] = @estoria.to_json(:include => :anexos)
+    resposta[:pode_administrar] = can? :administrar, @estoria.projeto
+    resposta[:pode_desenvolver] = can? :desenvolver, @estoria.projeto
+    resposta[:pode_testar] = can? :testar, @estoria.projeto
+    resposta[:pode_commitar] = can? :commitar, @estoria.projeto
+    render :json => resposta
   end
   
   def lista_backlog

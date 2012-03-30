@@ -46,7 +46,7 @@ function exibe_estorias_no_quadro(estoria, quadro) {
 		"<a href='javascript:void(0);' onclick='busca_estoria(" + estoria.id + ");'>" +
 		"<div style='margin: 4px; background-color: #FFFF00; padding: 7px; width: 95%'>" +
 			"<span style='width: 50px; display: block; float: left;'>" + estoria.importancia + "</span>" +
-			"<span>" + estoria.nome + "</span><br />" +
+			"<span>" + estoria.titulo + "</span><br />" +
 		"</div>" +
 		"</a>"
 	);

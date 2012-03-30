@@ -1,3 +1,7 @@
 class Papel < ActiveRecord::Base
-  has_one :papel
+  DONO = 'DP'
+  GERENTE = 'GP'
+  CLIENTE = 'PO'
+  MEMBRO_EQUIPE = 'DV'
+  TESTADOR = 'TT'
 end
