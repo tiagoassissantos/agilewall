@@ -1,5 +1,13 @@
 <%= stylesheet_link_tag 'redmond/jquery-ui-1.8.2.custom' %>
 
+<style>
+a:link {color: #000; text-decoration: none; font-size: 90%;}
+a:visited {color: #000; text-decoration: none; font-size: 90%;}
+a:hover {color: #555; text-decoration: none; font-size: 90%;}
+a:active {color: #000; text-decoration: none; font-size: 90%;}
+a img {border-width:0;}
+</style>
+
 <div id='menuSuperior' class='direita'>
 	<% if user_signed_in? %>
 		<%= link_to('Projetos', projetos_path) %> |
@@ -10,7 +18,7 @@
 </div>
     
 <div id='titulo' class='esquerda'>
-  <h1>AgileWall</h1>
+  <a href="/"><h1>AgileWall</h1></a>
 </div>
 
 <div id='infoContato' class='direita'>
