@@ -46,6 +46,10 @@ class UsuariosController < ApplicationController
     
     usuarios = User.joins(:permissoes).where('permissoes.projeto_id' => @projeto.id).group('id')
     
+    usuarios.each do |usuario|
+      usuario.permissoes.delete_if {|x| x.projeto_id != @projeto.id}
+    end
+    
     render :json => usuarios.to_json(:include => { :permissoes => {:include => :papel} })
   end
   
@@ -55,6 +59,10 @@ class UsuariosController < ApplicationController
     
     projeto = Projeto.find( params[:projeto] )
     usuarios = User.joins(:permissoes).where('permissoes.projeto_id' => projeto.id).group('id')
+    
+    usuarios.each do |usuario|
+      usuario.permissoes.delete_if {|x| x.projeto_id != @projeto.id}
+    end
     
     render :json => usuarios.to_json(:include => { :permissoes => {:include => :papel} })
   end
