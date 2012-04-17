@@ -12,6 +12,12 @@ class DashboardController < ApplicationController
       
       @usuarios = User.joins(:permissoes).where('permissoes.projeto_id' => @projeto.id).group('id')
       
+      @usuarios.each do |usuario|
+        usuario.permissoes.delete_if {|x| x.projeto_id != @projeto.id}
+      end
+      
+      @permissoes = Permissao.where('projeto_id' => @projeto.id)
+      
     rescue Exception => e
       puts e
       redirect_to "/projetos"

@@ -12,4 +12,10 @@
 		<% end %>
 		<br />
 	<% end %>
+	<br /><br /><br />
+	<% @permissoes.each do |permissao| %>
+		<%= permissao.user.email %> - 
+		<%= permissao.papel.nome %>
+		<br />
+	<% end %>
 </div>
