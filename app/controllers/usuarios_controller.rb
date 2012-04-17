@@ -14,6 +14,11 @@ class UsuariosController < ApplicationController
       end
       
       @usuarios = User.joins(:permissoes).where('permissoes.projeto_id' => @projeto.id).group('id')
+      
+      @usuarios.each do |usuario|
+        usuario.permissoes.delete_if {|x| x.projeto_id != @projeto.id}
+      end
+      
     rescue Exception => e
        redirect_to "/dashboard"
     end

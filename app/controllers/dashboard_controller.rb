@@ -16,8 +16,6 @@ class DashboardController < ApplicationController
         usuario.permissoes.delete_if {|x| x.projeto_id != @projeto.id}
       end
       
-      @permissoes = Permissao.where('projeto_id' => @projeto.id)
-      
     rescue Exception => e
       puts e
       redirect_to "/projetos"
