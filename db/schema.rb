@@ -43,7 +43,6 @@ ActiveRecord::Schema.define(:version => 20120329001908) do
   create_table "historicos", :force => true do |t|
     t.integer  "evento_id"
     t.integer  "estoria_id"
-    t.string   "descricao"
     t.date     "data"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -72,9 +71,10 @@ ActiveRecord::Schema.define(:version => 20120329001908) do
     t.datetime "updated_at"
   end
 
-  create_table "projetos_users", :id => false, :force => true do |t|
-    t.integer "projeto_id"
-    t.integer "user_id"
+  create_table "statuses", :force => true do |t|
+    t.string   "nome"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|

@@ -5,20 +5,20 @@ body { margin: 0; background: #000; }
 #pagina {
   position: relative;
   min-height: 100%;
-  width: 970px;
+  width: 1200px;
   margin: 0 auto;
   background: #fff;
   padding-top: 10px;  
 }
 
-#header { width: 950px; height: 50px; margin: 0 auto;}
+#header { width: 1200px; height: 50px; margin: 0 auto;}
 #menuSuperior { height: 45px; }
 #titulo { width: 450px; }
 
-#main { padding-bottom: 120px; padding-top: 25px; width: 950px; margin: 0 auto; }
+#main { padding-bottom: 120px; padding-top: 25px; width: 1200px; margin: 0 auto; }
 #menuLateral { width: 200px; }
 #busca { background: #F1F1F1; width: 185px; padding: 0px 0px 5px 5px;  }
-#conteudo { width: 950px; }
+#conteudo { width: 1200px; }
 #destaques { background: #F1F1F1; height: 250px; }
 
 #clear {clear: both;}
@@ -26,11 +26,11 @@ body { margin: 0; background: #000; }
 #rodape {
   position: absolute;
   bottom: 0;
-  width: 950px;
+  width: 1200px;
   margin-top: -110px;
   height: 60px;  
   left: 50%;
-  margin-left: -475px;
+  margin-left: -600px;
   margin-bottom: 10px;
 }
 
@@ -88,12 +88,27 @@ h3, h4 { margin-bottom: 7px; margin-top: 7px; }
 
 
 .bordaArredondada {
-    -moz-border-radius:10px; /* Firefox, etc */
-    -khtml-border-radius:10px; /* Konqueror, etc */
-    -webkit-border-radius:10px; /* Safari, Google Chrome, etc */
-    border-radius:10px;
-    behavior:url(stylesheets/border-radius.htc); /* IE */
+    -moz-border-radius:7px; /* Firefox, etc */
+    -khtml-border-radius:7px; /* Konqueror, etc */
+    -webkit-border-radius:7px; /* Safari, Google Chrome, etc */
+    border-radius:7px;
 }
+
+.bordaSuperiorArredondada {
+    -moz-border-radius:7px 7px 0px 0px; /* Firefox, etc */
+    -khtml-border-radius:7px 7px 0px 0px; /* Konqueror, etc */
+    -webkit-border-radius:7px 7px 0px 0px; /* Safari, Google Chrome, etc */
+    border-radius:7px 7px 0px 0px;
+}
+
+.bordaInferiorArredondada {
+    -moz-border-radius:0px 0px 7px 7px; /* Firefox, etc */
+    -khtml-border-radius:0px 0px 7px 7px; /* Konqueror, etc */
+    -webkit-border-radius:0px 0px 7px 7px; /* Safari, Google Chrome, etc */
+    border-radius:0px 0px 7px 7px;
+}
+
+
 
 ul.nav_h {list-style: none;	border: none; margin: 5px; padding-left: 0px;}
 ul.nav_h li {display: inline; list-style-type: none; padding-right: 15px; font-size: 20px;}
