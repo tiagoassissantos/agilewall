@@ -46,7 +46,7 @@ function preenche_historico(estorias) {
 
 		if (data == data_a) {
 			$("#" + data).append("<a href='javascript:void(0);' onclick='busca_estoria_prod(" + estoria.id + ");'>" +
-				"<div id='estoria" + estoria.id + "' style='border: 1px solid blue; margin: 5px; background-color: #FFFF00;'></div>" +
+				"<div id='estoria" + estoria.id + "' style='border: 1px solid blue; margin: 5px; background-color: #ccc;'></div>" +
 				"</a>");
 			$("#estoria" + estoria.id).append(estoria.titulo + "<br /");
 
@@ -55,7 +55,7 @@ function preenche_historico(estorias) {
 			$("#" + data).append("<h3>" + data + "</h3>");
 			
 			$("#" + data).append("<a href='javascript:void(0);' onclick='busca_estoria_prod(" + estoria.id + ");'>" +
-				"<div id='estoria" + estoria.id + "' style='border: 1px solid blue; margin: 5px; background-color: #FFFF00;'></div>" +
+				"<div id='estoria" + estoria.id + "' style='border: 1px solid blue; margin: 5px; background-color: #ccc;'></div>" +
 				"</a>");
 			$("#estoria" + estoria.id).append(estoria.titulo + "<br /");
 		}
