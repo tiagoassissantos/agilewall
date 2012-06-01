@@ -189,7 +189,7 @@ class EstoriasController < ApplicationController
   
   def lista
     @estorias = Estoria.where(:status => [3, 4, 5, 6, 7, 8], :projeto_id => params[:projeto]).order('importancia DESC')
-    render :json => @estorias
+    render :json => @estorias.to_json(:include => { :historicos => {:include => :user} })
   end
   
   def lista_producao

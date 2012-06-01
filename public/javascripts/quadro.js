@@ -48,21 +48,16 @@ function exibe_estorias(estorias) {
 }
 
 function exibe_estorias_no_quadro(estoria, quadro) {
-	/*$(quadro).append(
-		"<div style=' float: left;'>" +
-		"<a href='javascript:void(0);' onclick='busca_estoria(" + estoria.id + ");'>" +
-		"<div style='margin: 4px; background-color: #FFFF00; padding: 7px; width: 90%'>" +
-			"<span style='width: 50px; display: block; float: left;'>" + estoria.importancia + "</span>" +
-			"<span>" + estoria.titulo + "</span><br />" +
-		"</div>" +
-		"</a>" +
-		"</div>"
-	);*/
+	var historicos = estoria.historicos;
+	var numHist = historicos.length;
+	var usuario = historicos[numHist -1].user.email;
+	var nome = usuario.split("@");
 	
 	$(quadro).append(
 		"<div style='margin: 3px 2px 3px 4px; background-color: #ccc; width: 97%' class='bordaArredondada'>" +
 			"<div style='margin: 0px; padding: 5px 7px 3px 7px; height: 15px; background-color: #aaa' class='bordaSuperiorArredondada'>" +
 				"<span title='Importância' style='width: 50px; display: block; float: left;'>" + estoria.importancia + "</span>" +
+				"<span title='Usuário' style='display: block; float: right;'>" + nome[0] + "</span>" +
 			"</div>" +
 			"<hr style='margin: 0px'>" +
 			"<a href='javascript:void(0);' onclick='busca_estoria(" + estoria.id + ");'>" +
@@ -78,21 +73,16 @@ function exibe_estorias_no_quadro(estoria, quadro) {
 }
 
 function exibe_estorias_em_impedimento_no_quadro(estoria, quadro) {
-	/*$(quadro).append(
-		"<div style=' float: left;'>" +
-		"<a href='javascript:void(0);' onclick='busca_estoria(" + estoria.id + ");'>" +
-		"<div style='margin: 4px; background-color: #FFFF00; padding: 7px; width: 49%'>" +
-			"<span style='width: 50px; display: block; float: left;'>" + estoria.importancia + "</span>" +
-			"<span>" + estoria.titulo + "</span><br />" +
-		"</div>" +
-		"</a>" +
-		"</div>"
-	);*/
+	var historicos = estoria.historicos;
+	var numHist = historicos.length;
+	var usuario = historicos[numHist -1].user.email;
+	var nome = usuario.split("@");
 	
 	$(quadro).append(
 		"<div style='margin: 3px 2px 3px 4px; margin-bottom: 3px; background-color: #ccc; width: 97%' class='bordaArredondada'>" +
 			"<div style='margin: 0px; padding: 5px 7px 3px 7px; height: 15px; background-color: #aaa' class='bordaSuperiorArredondada'>" +
 				"<span title='Importância' style='width: 50px; display: block; float: left;'>" + estoria.importancia + "</span>" +
+				"<span title='Usuário' style='display: block; float: right;'>" + nome[0] + "</span>" +
 			"</div>" +
 			"<hr style='margin: 0px'>" +
 			"<a href='javascript:void(0);' onclick='busca_estoria(" + estoria.id + ");'>" +

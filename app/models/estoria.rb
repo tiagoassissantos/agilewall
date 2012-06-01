@@ -2,4 +2,5 @@
 class Estoria < ActiveRecord::Base 
   belongs_to :projeto
   has_many :anexos, :dependent => :destroy
+  has_many :historicos
 end
