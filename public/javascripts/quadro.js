@@ -53,10 +53,16 @@ function exibe_estorias_no_quadro(estoria, quadro) {
 	var usuario = historicos[numHist -1].user.email;
 	var nome = usuario.split("@");
 	
+	var bug = "";
+	if (estoria.tipo == 2) {
+		bug = "<img src='images/bug.png' alt='BUG' title='BUG' title='BUG' width='15' height='15' />";
+	}
+	
 	$(quadro).append(
 		"<div style='margin: 3px 2px 3px 4px; background-color: #ccc; width: 97%' class='bordaArredondada'>" +
-			"<div style='margin: 0px; padding: 5px 7px 3px 7px; height: 15px; background-color: #aaa' class='bordaSuperiorArredondada'>" +
-				"<span title='Importância' style='width: 50px; display: block; float: left;'>" + estoria.importancia + "</span>" +
+			"<div style='margin: 0px; padding: 5px 7px 3px 7px; height: 17px; background-color: #aaa' class='bordaSuperiorArredondada'>" +
+				"<span title='Importância' style='width: 30px; display: block; float: left;'>" + estoria.importancia + "</span>" +
+				bug +
 				"<span title='Usuário' style='display: block; float: right;'>" + nome[0] + "</span>" +
 			"</div>" +
 			"<hr style='margin: 0px'>" +
@@ -78,10 +84,16 @@ function exibe_estorias_em_impedimento_no_quadro(estoria, quadro) {
 	var usuario = historicos[numHist -1].user.email;
 	var nome = usuario.split("@");
 	
+	var bug = "";
+	if (estoria.tipo == 2) {
+		bug = "<img src='images/bug.png' alt='BUG' title='BUG' title='BUG' width='15' height='15' />";
+	}
+	
 	$(quadro).append(
 		"<div style='margin: 3px 2px 3px 4px; margin-bottom: 3px; background-color: #ccc; width: 97%' class='bordaArredondada'>" +
-			"<div style='margin: 0px; padding: 5px 7px 3px 7px; height: 15px; background-color: #aaa' class='bordaSuperiorArredondada'>" +
-				"<span title='Importância' style='width: 50px; display: block; float: left;'>" + estoria.importancia + "</span>" +
+			"<div style='margin: 0px; padding: 5px 7px 3px 7px; height: 17px; background-color: #aaa' class='bordaSuperiorArredondada'>" +
+				"<span title='Importância' style='width: 30px; display: block; float: left;'>" + estoria.importancia + "</span>" +
+				bug +
 				"<span title='Usuário' style='display: block; float: right;'>" + nome[0] + "</span>" +
 			"</div>" +
 			"<hr style='margin: 0px'>" +
