@@ -23,11 +23,13 @@
 </head>
 
 <body>
+<div id='header_ext'>
+	<div id='header'>
+		<%= render :partial => '/layouts/header' %>
+	</div>
+</div>
+
 <div id='pagina'>
-  <div id='header'>
-    <%= render :partial => '/layouts/header' %>
-  </div>
-  
   <div id='main'>
     <%= render :partial => '/layouts/main' %>    
     <div id='clear'></div>

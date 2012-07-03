@@ -30,7 +30,11 @@ function exibe_estorias(estorias) {
 			quadro = "#em_teste";
 		} else if (estoria.status == 8) {
 			quadro = "#teste_pronto";
-		}
+		} /*else if (estoria.status == 9) {
+			quadro = "#deploy_em_producao";
+		} else if (estoria.status == 10) {
+			quadro = "#em_producao";
+		} */
 		
 		if (estoria.status == 6) {
 			exibe_estorias_em_impedimento_no_quadro(estoria, quadro);
@@ -50,12 +54,8 @@ function exibe_estorias_no_quadro(estoria, quadro) {
 	var nome = usuario.split("@");
 	
 	var bug = "";
-	if (estoria.tipo == 1) {
-		bug = "<img src='images/green.png' alt='Funcionalidade' title='Funcionalidade' title='Funcionalidade' width='15' height='15' />";
-	} else if (estoria.tipo == 2) {
-		bug = "<img src='images/red.png' alt='BUG' title='BUG' title='BUG' width='15' height='15' />";
-	} else if (estoria.tipo == 3) {
-		bug = "<img src='images/blue.png' alt='Técnica' title='Técnica' title='Técnica' width='15' height='15' />";
+	if (estoria.tipo == 2) {
+		bug = "<img src='images/bug.png' alt='BUG' title='BUG' title='BUG' width='15' height='15' />";
 	}
 	
 	$(quadro).append(
@@ -85,12 +85,8 @@ function exibe_estorias_em_impedimento_no_quadro(estoria, quadro) {
 	var nome = usuario.split("@");
 	
 	var bug = "";
-	if (estoria.tipo == 1) {
-		bug = "<img src='images/green.png' alt='Funcionalidade' title='Funcionalidade' title='Funcionalidade' width='15' height='15' />";
-	} else if (estoria.tipo == 2) {
-		bug = "<img src='images/red.png' alt='BUG' title='BUG' title='BUG' width='15' height='15' />";
-	} else if (estoria.tipo == 3) {
-		bug = "<img src='images/blue.png' alt='Técnica' title='Técnica' title='Técnica' width='15' height='15' />";
+	if (estoria.tipo == 2) {
+		bug = "<img src='images/bug.png' alt='BUG' title='BUG' title='BUG' width='15' height='15' />";
 	}
 	
 	$(quadro).append(
@@ -121,4 +117,6 @@ function limpa_quadros() {
 	$("#com_impedimento").empty();
 	$("#em_teste").empty();
 	$("#teste_pronto").empty();
+	//$("#deploy_em_producao").empty();
+	//$("#em_producao").empty();
 }
