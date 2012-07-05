@@ -128,10 +128,6 @@ ul.nav_h li {display: inline; list-style-type: none; padding-right: 15px; font-s
    -webkit-border-radius: 4px;
    -moz-border-radius: 4px;
    border-radius: 4px;
-   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
-   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
-   box-shadow: rgba(0,0,0,1) 0 1px 0;
-   text-shadow: rgba(0,0,0,.4) 0 1px 0;
    color: white;
    font-size: 10px;
    font-family: Georgia, serif;
@@ -143,8 +139,9 @@ ul.nav_h li {display: inline; list-style-type: none; padding-right: 15px; font-s
    border-top-color: #28597a;
    background: #28597a;
    color: #ccc;
-   }
+}
 .botao_quadro:active {
    border-top-color: #1b435e;
    background: #1b435e;
-   }
+}
+   
