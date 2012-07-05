@@ -184,12 +184,41 @@ class EstoriasController < ApplicationController
   
   def lista_backlog
     @estorias = Estoria.where(:status => [1, 2], :projeto_id => params[:projeto]).order('importancia DESC')
-    render :json => @estorias
+    
+    resposta = Array.new
+    
+    @estorias.each do |estoria|
+    	estoria_map = Hash.new
+    	estoria_map[:estoria] = estoria.to_json
+   		estoria_map[:pode_administrar] = can? :administrar, estoria.projeto
+	    estoria_map[:pode_desenvolver] = can? :desenvolver, estoria.projeto
+	    estoria_map[:pode_testar] = can? :testar, estoria.projeto
+	    estoria_map[:pode_commitar] = can? :commitar, estoria.projeto
+	    
+	    resposta << estoria_map
+    end
+    
+    render :json => resposta
   end
   
   def lista
     @estorias = Estoria.where(:status => [3, 4, 5, 6, 7, 8], :projeto_id => params[:projeto]).order('importancia DESC')
-    render :json => @estorias.to_json(:include => { :historicos => {:include => :user} })
+    #render :json => @estorias.to_json(:include => { :historicos => {:include => :user} })
+    
+    resposta = Array.new
+    
+    @estorias.each do |estoria|
+    	estoria_map = Hash.new
+    	estoria_map[:estoria] = estoria.to_json(:include => { :historicos => {:include => :user} })
+   		estoria_map[:pode_administrar] = can? :administrar, estoria.projeto
+	    estoria_map[:pode_desenvolver] = can? :desenvolver, estoria.projeto
+	    estoria_map[:pode_testar] = can? :testar, estoria.projeto
+	    estoria_map[:pode_commitar] = can? :commitar, estoria.projeto
+	    
+	    resposta << estoria_map
+    end
+    
+    render :json => resposta
   end
   
   def lista_producao

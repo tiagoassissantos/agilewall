@@ -26,7 +26,8 @@ function limpa_quadros() {
 
 function exibe_estorias(estorias) {
 	for (var i = 0; i < estorias.length; i++) {
-		var estoria = estorias[i].estoria;
+		var estoria = $.parseJSON(estorias[i].estoria).estoria;
+		
 		var quadro = "";
 		
 		if (estoria.status == 1) {
@@ -35,13 +36,15 @@ function exibe_estorias(estorias) {
 			quadro = "#estorias_aprovadas";
 		}
 		
-		exibe_estorias_no_quadro(estoria, quadro);
+		exibe_estorias_no_quadro(estorias[i], quadro);
 	}
 	
 	desbloqueia_tela();
 }
 
-function exibe_estorias_no_quadro(estoria, quadro) {
+function exibe_estorias_no_quadro(estoria_perm, quadro) {
+	var estoria = $.parseJSON(estoria_perm.estoria).estoria;
+	
 	var bug = "";
 	if (estoria.tipo == 1) {
 		bug = "<img src='images/green.png' alt='Funcionalidade' title='Funcionalidade' title='Funcionalidade' width='15' height='15' />";
@@ -49,6 +52,20 @@ function exibe_estorias_no_quadro(estoria, quadro) {
 		bug = "<img src='images/red.png' alt='BUG' title='BUG' title='BUG' width='15' height='15' />";
 	} else if (estoria.tipo == 3) {
 		bug = "<img src='images/blue.png' alt='Técnica' title='Técnica' title='Técnica' width='15' height='15' />";
+	}
+	
+	var botoes = "";
+	
+	if (estoria.status == 1) {
+		if (estoria_perm.pode_administrar) {
+			botoes = "<a href='javascript:void(0)' class='botao_quadro' onclick='mudar_status(2, " + estoria.id + ")'>Aprovar</a>";
+		}
+		
+	} else if (estoria.status == 2) {
+		if (estoria_perm.pode_administrar) {
+			botoes = "<a href='javascript:void(0)' class='botao_quadro' onclick='mudar_status(1, " + estoria.id + ")'>Reprovar</a>";
+			botoes = botoes + "<a href='javascript:void(0)' class='botao_quadro' onclick='mudar_status(3, " + estoria.id + ")'>Escolher</a>";
+		}
 	}
 	
 	$(quadro).append(
@@ -64,7 +81,10 @@ function exibe_estorias_no_quadro(estoria, quadro) {
 				"</div>" +
 			"</a>" +
 			"<hr style='margin: 0px'>" +
-			"<div style='margin: 0px; padding: 7px 7px 3px 7px; height: 3px'>" +
+			"<div style='margin: 0px; padding: 1px 7px 3px 7px; height: 20px'>" +
+				"<div style='float: right;'>" +
+					botoes +
+				"</div>" +
 			"</div>" +
 		"</div>"
 	);
