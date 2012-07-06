@@ -80,7 +80,7 @@ function exibe_estorias_no_quadro(estoria_perm, quadro) {
 		
 	} else if (estoria.status == 5) {
 		if (estoria_perm.pode_desenvolver) {
-			botoes = "<a href='javascript:void(0)' class='botao_quadro' onclick='mudar_status(4, " + estoria.id + ")'>Voltar Desenvolvimento</a>";
+			botoes = "<a href='javascript:void(0)' class='botao_quadro' onclick='mudar_status(4, " + estoria.id + ")'>Desenvolver</a>";
 		}
 		if (estoria_perm.pode_testar) {
 			botoes = botoes + "<a href='javascript:void(0)' class='botao_quadro' onclick='mudar_status(7, " + estoria.id + ")'>Testar</a>";
