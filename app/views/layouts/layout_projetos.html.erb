@@ -20,14 +20,17 @@
   })();
 
 </script>
+
 </head>
 
 <body>
+<div id='header_ext'>
+	<div id='header'>
+		<%= render :partial => '/layouts/header_projetos' %>
+	</div>
+</div>
+
 <div id='pagina'>
-  <div id='header'>
-    <%= render :partial => '/layouts/header_projetos' %>
-  </div>
-  
   <div id='main'>
 	<% content_for :content do %>
   		<%= yield %>

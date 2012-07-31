@@ -1,0 +1,43 @@
+<style>
+#div_contato {
+	width: 716px; 
+	height: 545px; 
+	margin: 0px auto; 
+	padding-left: 10px;
+	color: #000;
+	background-image: url(images/fundo_transp.png);
+}
+#div_contato span {width: 70px; display: inline-block;}
+#div_contato input {width: 320px;}
+#div_contato textarea {width: 320px; height: 200px;}
+</style>
+
+<div id="div_contato">
+<p id="notice"><%= notice %></p>
+<div id="formulario" style="margin-left: 150px;">
+	<h2>Formulário de Contato</h2>
+
+	<form action="contato/enviar" method="post">
+		<span>Nome: </span>
+		<input type="text" name="nome" /><br />
+	
+		<span>E-mail: </span>
+		<input type="text" name="email" /><br />
+	
+		<span>Assunto: </span>
+		<input type="text" name="assunto" /><br />
+	
+		<span style="vertical-align: top;">Mensagem: </span>
+		<textarea name="mensagem"></textarea><br />
+		
+		<button type="submit" style="margin-left: 336px">Enviar</button>
+		
+	</form>
+</div>
+</div>
+
+<script>
+$(document).ready(function() {
+	$("#menu_contato").addClass("active");
+});
+</script>

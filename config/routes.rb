@@ -1,4 +1,8 @@
 AgileWall::Application.routes.draw do
+  get "contato/index"
+
+  get "contato/enviar"
+
   get "producao", :controller => :producao, :action => :index
   
   get "usuarios/remove_permissao"
