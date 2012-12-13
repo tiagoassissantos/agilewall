@@ -11,7 +11,7 @@ h1 { margin: 0px; padding: 3px;}
 
 <div id='menuSuperior' class='direita'>
 	<% if user_signed_in? %>
-		<%= link_to('Projetos', projetos_path) %> |
+		<%= link_to('Início', user_root_path) %> |
 		<%= link_to('Logout', destroy_user_session_path, :method => :delete) %> |
 		<%= link_to('Contato', contato_index_path) %>
 	<% else %>
@@ -20,15 +20,21 @@ h1 { margin: 0px; padding: 3px;}
 </div>
     
 <div id='titulo'>
-  <h1><%= @projeto.nome %></h1>
+  <h1>
+  	<%= link_to @portifolio.nome, dashboard_path(:po => @portifolio.id) %>
+    <% unless @projeto.nil? %>
+      > <%= @projeto.nome %>
+    <% end %>
+  </h1>
 </div>
 
 <div id='menu_principal'>
+  <% unless @projeto.nil? %>
   <ul class="nav_h">
-      <li><%= link_to 'Dashboard', dashboard_path(:projeto => params[:projeto]) %></li>
-      <li><%= link_to 'Backlog', backlog_path(:projeto => params[:projeto]) %></li>
-      <li><%= link_to 'Quadro', quadro_path(:projeto => params[:projeto]) %></li>
-	  <li><%= link_to 'Em Produção', producao_path(:projeto => params[:projeto]) %></li>
+      <!-- <li><%= link_to 'Dashboard', dashboard_path(:projeto => params[:projeto]) %></li> -->
+      <li><%= link_to 'Backlog', backlog_path(:pr => params[:pr], :po => @portifolio.id) %></li>
+      <li><%= link_to 'Quadro', quadro_path(:pr => params[:pr], :po => @portifolio.id) %></li>
+	  <li><%= link_to 'Em Produção', producao_path(:pr => params[:pr], :po => @portifolio.id) %></li>
     </ul>
+  <% end %>  
 </div>
-

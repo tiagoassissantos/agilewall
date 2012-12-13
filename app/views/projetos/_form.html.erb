@@ -11,6 +11,8 @@
     </div>
   <% end %>
 
+  <%= hidden_field_tag :po, params[:po] %>
+
   <div class="field">
     <%= f.label :nome %><br />
     <%= f.text_field :nome %>

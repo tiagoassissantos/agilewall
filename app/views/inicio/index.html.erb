@@ -1,0 +1,110 @@
+<%= link_to 'Novo Portifólio', 'javascript:void(0);', :onclick => 'abrir();' %>
+
+
+<h1>Seus Portifólios</h1>
+
+<div>
+	<% unless @portifolios.nil?
+		@portifolios.each do |portifolio| %>
+			<%= link_to portifolio.nome, dashboard_path(:po => portifolio.id) %>
+			<!-- <a href="javascript:void(0);" onclick="editar(<%= portifolio.id %>);" style="font-size: 100pxpx;">Editar</a> -->
+			<br />
+		<% end
+	end %>
+</div>
+
+<div id="dialogo_novo_portifolio" title="Novo Portifólio">
+<%= form_tag "/portifolio/novo", :id => "form_novo_portifolio", :remote => true do %>
+	<%= render 'portifolio/form' %>
+<% end %>
+</div>
+
+<div id="dialogo_editar_portifolio" title="Editar Portifólio">
+<%= form_tag "/portifolio/update", :id => "form_editar_portifolio", :remote => true do %>
+	<input type="hidden" name="portifolio[id]" id="portifolio_id" />
+	<%= render 'portifolio/form' %>
+<% end %>
+</div>
+
+<%= javascript_include_tag 'jqueryui/jquery.ui.core.min.js' %>
+<%= javascript_include_tag 'jqueryui/jquery.ui.widget.min.js' %>
+<%= javascript_include_tag 'jqueryui/jquery.ui.position.min.js' %>
+<%= javascript_include_tag 'jqueryui/jquery.ui.dialog.min.js' %>
+<%= javascript_include_tag 'jqueryui/jquery.ui.button.min.js' %>
+<%= javascript_include_tag 'jqueryui/jquery.ui.autocomplete.min.js' %>
+<%= javascript_include_tag 'jquery.form.js' %>
+<%= javascript_include_tag 'jquery.validate.js' %>
+<%= javascript_include_tag 'core.js' %>
+
+
+
+<script type="text/javascript">
+$(document).ready( function () {
+	$('#dialogo_novo_portifolio').dialog({
+		autoOpen: false,
+		height: 200,
+		width: 200,
+		position: 'center',
+		modal: true,
+		close: function() {
+			limpa_dialogo_portifolio();
+		}
+	});
+
+	$('#dialogo_editar_portifolio').dialog({
+		autoOpen: false,
+		height: 200,
+		width: 200,
+		position: 'center',
+		modal: true,
+		close: function() {
+			//limpa_dialogo_portifolio();
+		}
+	});
+
+	$('#form_novo_portifolio').submit(function() {
+		bloqueia_tela();
+		$(this).ajaxSubmit({
+			success: retorno,
+			url: '/portifolio/novo',
+			type: 'post' 
+		});
+		return false;
+	});
+
+	$('#form_editar_portifolio').submit(function() {
+		bloqueia_tela();
+		$(this).ajaxSubmit({
+			success: retorno,
+			url: '/portifolio/update',
+			type: 'post' 
+		});
+		return false;
+	});
+});
+
+function abrir() {
+	$('#dialogo_novo_portifolio').dialog('open');
+}
+
+function fecha_dialogo_novo_portifolio() {
+	$('#dialogo_novo_portifolio').dialog('close');
+	$('#dialogo_editar_portifolio').dialog('close');
+}
+
+function limpa_dialogo_portifolio() {
+	$("#nome_novo_portifolio").val("");
+	$("#descricao_novo_portifolio").val("");
+}
+
+function retorno(retorno) {
+	fecha_dialogo_novo_portifolio();
+	//desbloqueia_tela();
+	window.location.reload();
+}
+
+function editar(id) {
+	$('#dialogo_editar_portifolio').dialog('open');
+}
+
+</script>

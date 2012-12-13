@@ -3,7 +3,8 @@
 development:
   adapter: mysql2
   encoding: utf8
-  database: agilewall_dev
+  #database: agilewall_dev
+  database: agilewall_teste2
   pool: 5
   username: root
   password: oz4kh8

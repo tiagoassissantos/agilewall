@@ -31,7 +31,7 @@ a img {border-width:0;}
 <script>
 $(document).ready( function () {
 	$.getJSON('/estorias/lista_producao',
-		{projeto: queryString("projeto")},
+		{projeto: queryString("pr")},
 		function(estorias) {
 			preenche_historico(estorias);
 		}

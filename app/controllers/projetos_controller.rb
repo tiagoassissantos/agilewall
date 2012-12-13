@@ -2,13 +2,6 @@
 class ProjetosController < ApplicationController
   before_filter :authenticate_user!
   
-  # GET /projetos
-  # GET /projetos.xml
-  def index
-    #@projetos = Projeto.all(:joins => :permissoes, :conditions => {'permissoes.user_id' => current_user.id})
-    @projetos = Projeto.joins(:permissoes).where('permissoes.user_id' => current_user.id).group('id')
-  end
-
   # GET /projetos/1
   # GET /projetos/1.xml
   def show
@@ -39,26 +32,29 @@ class ProjetosController < ApplicationController
   # POST /projetos
   # POST /projetos.xml
   def create
+    @portifolio = Portifolio.find( params[:po] )
+
     @projeto = Projeto.new
     @projeto.nome = params[:projeto][:nome]
     @projeto.descricao = params[:projeto][:descricao]
+    @projeto.portifolio = @portifolio
     
     respond_to do |format|
       if @projeto.save
         
-        @permissao = Permissao.new
-        @permissao.user = current_user
-        @permissao.projeto = @projeto
-        @permissao.papel = Papel.find_by_nome(Papel::DONO)
-        @permissao.save
+        #@permissao = Permissao.new
+        #@permissao.user = current_user
+        #@permissao.projeto = @projeto
+        #@permissao.papel = Papel.find_by_nome(Papel::DONO)
+        #@permissao.save
         
-        @permissao2 = Permissao.new
-        @permissao2.user = current_user
-        @permissao2.projeto = @projeto
-        @permissao2.papel = Papel.find_by_nome(Papel::GERENTE)
-        @permissao2.save
+        #@permissao2 = Permissao.new
+        #@permissao2.user = current_user
+        #@permissao2.projeto = @projeto
+        #@permissao2.papel = Papel.find_by_nome(Papel::GERENTE)
+        #@permissao2.save
         
-        format.html { redirect_to(projetos_path, :notice => 'Projeto was successfully created.') }
+        format.html { redirect_to(:controller => 'dashboard', :action => 'index', :po => @portifolio.id, :notice => 'Projeto was successfully created.') }
         format.xml  { render :xml => @projeto, :status => :created, :location => @projeto }
       else
         format.html { render :action => "new" }

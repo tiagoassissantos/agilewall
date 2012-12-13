@@ -10,7 +10,7 @@ a img {border-width:0;}
 
 <div id='menuSuperior' class='direita'>
 	<% if user_signed_in? %>
-		<%= link_to('Projetos', projetos_path) %> |
+		<%= link_to('Início', user_root_path) %> |
 		<%= link_to('Logout', destroy_user_session_path, :method => :delete) %> |
 	<% else %>
  		

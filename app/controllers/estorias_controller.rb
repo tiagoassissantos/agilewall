@@ -5,10 +5,11 @@ class EstoriasController < ApplicationController
   
   def index
     begin
-      @projeto = Projeto.find( params[:projeto] )
-      if cannot? :read, @projeto
-        redirect_to "/dashboard"
+      @portifolio = Portifolio.find(params[:po])
+      if cannot? :read, @portifolio
+        redirect_to "/dashboard?portifolio=" + params[:po]
       end
+      @projeto = Projeto.find( params[:pr] )
     rescue Exception => e
        redirect_to "/dashboard"
     end

@@ -1,9 +1,0 @@
-<%= link_to 'Novo Projeto', new_projeto_path %>
-
-<div>
-	<h2>Projetos</h2>
-
-	<% @projetos.each do |projeto| %>
-		<%= link_to projeto.nome, dashboard_path(:projeto => projeto.id) %><br />
-	<% end %>
-</div>

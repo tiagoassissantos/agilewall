@@ -2,9 +2,9 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :read, Projeto do |projeto|
+    can :read, Portifolio do |portifolio|
       pode = false
-      projeto.permissoes.each do |permissao|
+      portifolio.permissoes.each do |permissao|
         if permissao.user_id == user.id
           pode = true
           break
@@ -13,9 +13,9 @@ class Ability
       pode
     end
     
-    can :administrar, Projeto do |projeto|
+    can :administrar, Portifolio do |portifolio|
       pode = false
-      projeto.permissoes.each do |permissao|
+      portifolio.permissoes.each do |permissao|
         if permissao.user_id == user.id
           if permissao.papel.nome == Papel::GERENTE || permissao.papel.nome == Papel::DONO || permissao.papel.nome == Papel::CLIENTE
             pode = true
@@ -26,9 +26,9 @@ class Ability
       pode
     end
     
-    can :desenvolver, Projeto do |projeto|
+    can :desenvolver, Portifolio do |portifolio|
       pode = false
-      projeto.permissoes.each do |permissao|
+      portifolio.permissoes.each do |permissao|
         if permissao.user_id == user.id
           if permissao.papel.nome == Papel::GERENTE || permissao.papel.nome == Papel::MEMBRO_EQUIPE
             pode = true
@@ -39,9 +39,9 @@ class Ability
       pode
     end
     
-    can :testar, Projeto do |projeto|
+    can :testar, Portifolio do |portifolio|
       pode = false
-      projeto.permissoes.each do |permissao|
+      portifolio.permissoes.each do |permissao|
         if permissao.user_id == user.id
           if permissao.papel.nome == Papel::GERENTE || permissao.papel.nome == Papel::MEMBRO_EQUIPE || permissao.papel.nome == Papel::TESTADOR
             pode = true
@@ -52,9 +52,9 @@ class Ability
       pode
     end
     
-    can :commitar, Projeto do |projeto|
+    can :commitar, Portifolio do |portifolio|
       pode = false
-      projeto.permissoes.each do |permissao|
+      portifolio.permissoes.each do |permissao|
         if permissao.user_id == user.id
           if permissao.papel.nome == Papel::GERENTE
             pode = true
@@ -66,9 +66,9 @@ class Ability
     end
     
     
-    can :gerenciar_usuario, Projeto do |projeto|
+    can :gerenciar_usuario, Portifolio do |portifolio|
       pode = false
-      projeto.permissoes.each do |permissao|
+      portifolio.permissoes.each do |permissao|
         if permissao.user_id == user.id
           if permissao.papel.nome == Papel::GERENTE || permissao.papel.nome == Papel::DONO
             pode = true

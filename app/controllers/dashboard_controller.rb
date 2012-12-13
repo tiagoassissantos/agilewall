@@ -5,20 +5,24 @@ class DashboardController < ApplicationController
   
   def index
    begin
-      @projeto = Projeto.find(params[:projeto])
-      if cannot? :read, @projeto
-        redirect_to "/projetos"
+      @portifolio = Portifolio.find(params[:po])
+      if cannot? :read, @portifolio
+        redirect_to "/inicio"
       end
       
-      @usuarios = User.joins(:permissoes).where('permissoes.projeto_id' => @projeto.id).group('id')
+      @usuarios = User.joins(:permissoes).where('permissoes.portifolio_id' => @portifolio.id).group('id')
       
       @usuarios.each do |usuario|
-        usuario.permissoes.delete_if {|x| x.projeto_id != @projeto.id}
+        usuario.permissoes.delete_if {|x| x.projeto_id != @portifolio.id}
       end
+
+      @projetos = @portifolio.projetos
       
     rescue Exception => e
+      puts "------------------------------------------------------------------"
       puts e
-      redirect_to "/projetos"
+      puts "------------------------------------------------------------------"
+      redirect_to "/inicio"
     end
   end
 

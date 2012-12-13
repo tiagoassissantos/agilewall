@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120607201253) do
+ActiveRecord::Schema.define(:version => 20120907015932) do
 
   create_table "anexos", :force => true do |t|
     t.string   "arquivo"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20120607201253) do
   create_table "historicos", :force => true do |t|
     t.integer  "evento_id"
     t.integer  "estoria_id"
+    t.string   "descricao"
     t.date     "data"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -62,6 +63,14 @@ ActiveRecord::Schema.define(:version => 20120607201253) do
     t.integer  "papel_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "portifolio_id"
+  end
+
+  create_table "portifolios", :force => true do |t|
+    t.string   "nome"
+    t.string   "descricao"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "projetos", :force => true do |t|
@@ -69,6 +78,12 @@ ActiveRecord::Schema.define(:version => 20120607201253) do
     t.string   "descricao"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "portifolio_id"
+  end
+
+  create_table "projetos_users", :id => false, :force => true do |t|
+    t.integer "projeto_id"
+    t.integer "user_id"
   end
 
   create_table "statuses", :force => true do |t|

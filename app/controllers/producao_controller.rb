@@ -1,15 +1,17 @@
+# encoding: UTF-8
 class ProducaoController < ApplicationController
   layout 'layout_projetos'
   before_filter :authenticate_user!
   
   def index
     begin
-      @projeto = Projeto.find( params[:projeto] )
-      if cannot? :read, @projeto
-        redirect_to "/dashboard"
+      @portifolio = Portifolio.find(params[:po])
+      if cannot? :read, @portifolio
+        redirect_to "/dashboard?portifolio=" + params[:po]
       end
+      @projeto = Projeto.find( params[:pr] )
     rescue Exception => e
-       redirect_to "/dashboard"
+      redirect_to "/dashboard"
     end
   end
 end

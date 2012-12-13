@@ -31,7 +31,7 @@ function mostra_resultado(resultado) {
 
 function add_ao_projeto(id_usuario) {
 	bloqueia_tela();
-	$.getJSON('/usuarios/inclui_user', {id_user: id_usuario, projeto: id_projeto, papel: $("#papel").val()}, retorno_add_usuario);
+	$.getJSON('/usuarios/inclui_user', {id_user: id_usuario, portifolio: id_portifolio, papel: $("#papel").val()}, retorno_add_usuario);
 }
 
 function retorno_add_usuario(retorno) {
@@ -61,5 +61,5 @@ function retorno_add_usuario(retorno) {
 
 function remove_permissao(id) {
 	bloqueia_tela();
-	$.getJSON('/usuarios/remove_permissao', {id: id, projeto: id_projeto}, retorno_add_usuario);
+	$.getJSON('/usuarios/remove_permissao', {id: id, portifolio: id_portifolio}, retorno_add_usuario);
 }

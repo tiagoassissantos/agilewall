@@ -1,4 +1,4 @@
 class Projeto < ActiveRecord::Base
-  #has_and_belongs_to_many :users
-  has_many :permissoes
+  #has_many :permissoes
+  belongs_to :portifolio
 end

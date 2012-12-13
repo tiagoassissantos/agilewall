@@ -1,8 +1,8 @@
 <div>
-	<h2>Usuários do projeto</h2>
+	<h2>Usuários do Portifólio</h2>
 	
-	<% if can? :gerenciar_usuario, @projeto %>
-		<%= link_to 'Gerenciar Usuários', usuarios_path(:projeto => @projeto.id) %><br />
+	<% if can? :gerenciar_usuario, @portifolio %>
+		<%= link_to 'Gerenciar Usuários', usuarios_path(:po => @portifolio.id) %><br />
 	<% end %>
 	
 	<% @usuarios.each do |usuario| %>
@@ -12,5 +12,12 @@
 		<% end %>
 		<br />
 	<% end %>
+
+	<br><br>
+	<%= link_to 'Novo Projeto', new_projeto_path(:po => @portifolio.id) %>
+	<h2>Projetos no Portifólio</h2>
 	
+	<% @projetos.each do |projeto| %>
+		<%= link_to projeto.nome, backlog_path(:pr => projeto.id, :po => @portifolio.id) %><br />
+	<% end %>
 </div>
