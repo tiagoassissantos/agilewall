@@ -146,63 +146,64 @@ function preenche_dialogo_estoria(resposta) {
 	
 	if (estoria.status == 1) {
 		$("#status_estoria").append("Aguardando Aprovação");
-		if (resposta.pode_administrar) {
+		/*if (resposta.pode_administrar) {
 			$("#status_estoria").append("<button type='button' onclick='mudar_status(2, " + estoria.id + ")'>Aprovar</button>");
-		}
+		}*/
 		
 	} else if (estoria.status == 2) {
 		$("#status_estoria").append("Aprovado");
-		if (resposta.pode_administrar) {
+		/*if (resposta.pode_administrar) {
 			$("#status_estoria").append("<button type='button' onclick='mudar_status(1, " + estoria.id + ")'>Reprovar</button>");
 			$("#status_estoria").append("<button type='button' onclick='mudar_status(3, " + estoria.id + ")'>Escolher</button>");
-		}
+		}*/
 		
 	} else if (estoria.status == 3) {
 		$("#status_estoria").append("Não Iníciado");
-		if (resposta.pode_administrar) {
+		/*if (resposta.pode_administrar) {
 			$("#status_estoria").append("<button type='button' onclick='mudar_status(2, " + estoria.id + ")'>Voltar backlog</button>");
 		}
 		if (resposta.pode_desenvolver) {
 			$("#status_estoria").append("<button type='button' onclick='mudar_status(4, " + estoria.id + ")'>Desenvolver</button>");
-		}
+		}*/
 		
 	} else if (estoria.status == 4) {
 		$("#status_estoria").append("Em Desenvolvimento");
-		if (resposta.pode_desenvolver) {
+		/*if (resposta.pode_desenvolver) {
 			$("#status_estoria").append("<button type='button' onclick='mudar_status(3, " + estoria.id + ")'>Parar</button>");
 			$("#status_estoria").append("<button type='button' onclick='mudar_status(6, " + estoria.id + ")'>Impedimento</button>");
 			$("#status_estoria").append("<button type='button' onclick='mudar_status(5, " + estoria.id + ")'>Finalizar</button>");
-		}
+		}*/
 		
 	} else if (estoria.status == 5) {
 		$("#status_estoria").append("Desenvolvimento Finalizado");
-		if (resposta.pode_desenvolver) {
+		/*if (resposta.pode_desenvolver) {
 			$("#status_estoria").append("<button type='button' onclick='mudar_status(4, " + estoria.id + ")'>Voltar Desenvolvimento</button>");
 		}
 		if (resposta.pode_testar) {
 			$("#status_estoria").append("<button type='button' onclick='mudar_status(7, " + estoria.id + ")'>Testar</button>");
-		}
+		}*/
 		
 	} else if (estoria.status == 6) {
 		$("#status_estoria").append("Impedimento");
-		if (resposta.pode_desenvolver) {
+		/*if (resposta.pode_desenvolver) {
 			$("#status_estoria").append("<button type='button' onclick='mudar_status(4, " + estoria.id + ")'>Desenvolver</button>");
-		}		
+		}*/
+		
 	} else if (estoria.status == 7) {
 		$("#status_estoria").append("Em Teste");
-		if (resposta.pode_testar) {
+		/*if (resposta.pode_testar) {
 			$("#status_estoria").append("<button type='button' onclick='mudar_status(5, " + estoria.id + ")'>Parar Teste</button>");
 			$("#status_estoria").append("<button type='button' onclick='mudar_status(8, " + estoria.id + ")'>Finalizar Teste</button>");
-		}
+		}*/
 		
 	} else if (estoria.status == 8) {
 		$("#status_estoria").append("Teste Finalizado");
-		if (resposta.pode_testar) {
+		/*if (resposta.pode_testar) {
 			$("#status_estoria").append("<button type='button' onclick='mudar_status(7, " + estoria.id + ")'>Testar Novamente</button>");
 		}
 		if (resposta.pode_commitar) {
 			$("#status_estoria").append("<button type='button' onclick='mudar_status(9, " + estoria.id + ")'>Finalizar Estória</button>");
-		}
+		}*/
 	}
 	
 	$('#tipo').val(estoria.tipo);

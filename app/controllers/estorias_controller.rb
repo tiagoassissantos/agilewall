@@ -176,10 +176,10 @@ class EstoriasController < ApplicationController
     
     resposta = Hash.new
     resposta[:estoria] = @estoria.to_json(:include => :anexos)
-    resposta[:pode_administrar] = can? :administrar, @estoria.projeto
-    resposta[:pode_desenvolver] = can? :desenvolver, @estoria.projeto
-    resposta[:pode_testar] = can? :testar, @estoria.projeto
-    resposta[:pode_commitar] = can? :commitar, @estoria.projeto
+    resposta[:pode_administrar] = can? :administrar, @estoria.projeto.portifolio
+    resposta[:pode_desenvolver] = can? :desenvolver, @estoria.projeto.portifolio
+    resposta[:pode_testar] = can? :testar, @estoria.projeto.portifolio
+    resposta[:pode_commitar] = can? :commitar, @estoria.projeto.portifolio
     render :json => resposta
   end
   
@@ -191,10 +191,10 @@ class EstoriasController < ApplicationController
     @estorias.each do |estoria|
     	estoria_map = Hash.new
     	estoria_map[:estoria] = estoria.to_json
-   		estoria_map[:pode_administrar] = can? :administrar, estoria.projeto
-	    estoria_map[:pode_desenvolver] = can? :desenvolver, estoria.projeto
-	    estoria_map[:pode_testar] = can? :testar, estoria.projeto
-	    estoria_map[:pode_commitar] = can? :commitar, estoria.projeto
+   		estoria_map[:pode_administrar] = can? :administrar, estoria.projeto.portifolio
+	    estoria_map[:pode_desenvolver] = can? :desenvolver, estoria.projeto.portifolio
+	    estoria_map[:pode_testar] = can? :testar, estoria.projeto.portifolio
+	    estoria_map[:pode_commitar] = can? :commitar, estoria.projeto.portifolio
 	    
 	    resposta << estoria_map
     end
@@ -211,10 +211,10 @@ class EstoriasController < ApplicationController
     @estorias.each do |estoria|
     	estoria_map = Hash.new
     	estoria_map[:estoria] = estoria.to_json(:include => { :historicos => {:include => :user} })
-   		estoria_map[:pode_administrar] = can? :administrar, estoria.projeto
-	    estoria_map[:pode_desenvolver] = can? :desenvolver, estoria.projeto
-	    estoria_map[:pode_testar] = can? :testar, estoria.projeto
-	    estoria_map[:pode_commitar] = can? :commitar, estoria.projeto
+   		estoria_map[:pode_administrar] = can? :administrar, estoria.projeto.portifolio
+	    estoria_map[:pode_desenvolver] = can? :desenvolver, estoria.projeto.portifolio
+	    estoria_map[:pode_testar] = can? :testar, estoria.projeto.portifolio
+	    estoria_map[:pode_commitar] = can? :commitar, estoria.projeto.portifolio
 	    
 	    resposta << estoria_map
     end

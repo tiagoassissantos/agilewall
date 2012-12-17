@@ -55,7 +55,7 @@ function exibe_estorias_no_quadro(estoria_perm, quadro) {
 	}
 	
 	var botoes = "";
-	
+
 	if (estoria.status == 1) {
 		if (estoria_perm.pode_administrar) {
 			botoes = "<a href='javascript:void(0)' class='botao_quadro' onclick='mudar_status(2, " + estoria.id + ")'>Aprovar</a>";
@@ -66,6 +66,7 @@ function exibe_estorias_no_quadro(estoria_perm, quadro) {
 			botoes = "<a href='javascript:void(0)' class='botao_quadro' onclick='mudar_status(1, " + estoria.id + ")'>Reprovar</a>";
 			botoes = botoes + "<a href='javascript:void(0)' class='botao_quadro' onclick='mudar_status(3, " + estoria.id + ")'>Escolher</a>";
 		}
+		
 	}
 	
 	$(quadro).append(
